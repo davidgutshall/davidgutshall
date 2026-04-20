@@ -1,0 +1,95 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  background: #101923;
+  color: #f5f7fa;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px;
+}
+
+.app {
+  width: min(1100px, 95vw);
+  display: grid;
+  gap: 16px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.controls {
+  background: #1a2633;
+  border: 1px solid #2f4359;
+  border-radius: 10px;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+label {
+  font-size: 0.9rem;
+  color: #bfd4eb;
+  display: grid;
+  gap: 6px;
+}
+
+input[type="number"] {
+  width: 100%;
+}
+
+.button-group {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: white;
+  background: #2f80ed;
+}
+
+button:hover {
+  background: #4b95f3;
+}
+
+.status {
+  background: #1a2633;
+  border: 1px solid #2f4359;
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+#lifeCanvas {
+  display: block;
+  background: #0b1119;
+  border: 1px solid #273647;
+  image-rendering: pixelated;
+  max-width: 100%;
+  height: auto;
+}
+
+.hint {
+  color: #bfd4eb;
+  margin: 0;
+  font-size: 0.95rem;
+}

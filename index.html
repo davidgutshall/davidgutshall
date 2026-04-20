@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Game of Life (Browser)</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header>
+        <h1>Conway's Game of Life</h1>
+        <p>Browser animation with adjustable grid and speed.</p>
+      </header>
+
+      <section class="controls">
+        <label>
+          Rows
+          <input id="rows" type="number" min="10" max="200" value="60" />
+        </label>
+        <label>
+          Cols
+          <input id="cols" type="number" min="10" max="260" value="100" />
+        </label>
+        <label>
+          Density
+          <input
+            id="density"
+            type="number"
+            min="0.01"
+            max="1"
+            step="0.01"
+            value="0.20"
+          />
+        </label>
+        <label>
+          FPS
+          <input id="fps" type="number" min="1" max="60" value="15" />
+        </label>
+
+        <div class="button-group">
+          <button id="startPauseBtn" type="button">Start</button>
+          <button id="stepBtn" type="button">Step</button>
+          <button id="randomizeBtn" type="button">Randomize</button>
+          <button id="clearBtn" type="button">Clear</button>
+          <button id="applySizeBtn" type="button">Apply Grid Size</button>
+        </div>
+      </section>
+
+      <section class="status">
+        <span id="generationLabel">Generation: 0</span>
+        <span id="aliveLabel">Alive: 0</span>
+      </section>
+
+      <canvas id="lifeCanvas" width="1000" height="600" aria-label="Game grid"></canvas>
+      <p class="hint">Tip: click cells on the board to toggle alive/dead.</p>
+    </main>
+
+    <script src="game_of_life_web.js"></script>
+  </body>
+</html>
