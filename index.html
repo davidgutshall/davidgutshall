@@ -23,6 +23,10 @@
         --subtext: #8a8880;
         --muted: #3e3c34;
         --container: 1120px;
+        --radius-lg: 14px;
+        --radius-md: 12px;
+        --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.18);
+        --shadow-elevated: 0 18px 38px rgba(0, 0, 0, 0.34);
       }
 
       * {
@@ -36,11 +40,15 @@
       }
 
       body {
+        color-scheme: dark;
         font-family: "Inter", system-ui, -apple-system, sans-serif;
-        background: radial-gradient(circle at top right, rgba(232, 96, 44, 0.08), transparent 42%), var(--bg);
+        background:
+          radial-gradient(1300px 600px at 98% -12%, rgba(232, 96, 44, 0.15), transparent 58%),
+          radial-gradient(860px 420px at -8% 10%, rgba(232, 96, 44, 0.09), transparent 58%),
+          var(--bg);
         color: var(--text);
         min-height: 100vh;
-        line-height: 1.45;
+        line-height: 1.5;
         position: relative;
         overflow-x: hidden;
       }
@@ -51,7 +59,7 @@
         inset: 0;
         pointer-events: none;
         z-index: 1;
-        opacity: 0.18;
+        opacity: 0.2;
         mix-blend-mode: soft-light;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23noiseFilter)' opacity='0.56'/%3E%3C/svg%3E");
       }
@@ -61,12 +69,12 @@
         z-index: 2;
         width: min(var(--container), calc(100vw - 3rem));
         margin: 0 auto;
-        padding: 1.25rem 0 2rem;
+        padding: clamp(0.9rem, 2.5vw, 1.35rem) 0 2.1rem;
       }
 
       .mono {
         font-family: "Berkeley Mono", "IBM Plex Mono", "SFMono-Regular", ui-monospace, Menlo, monospace;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.045em;
       }
 
       .topbar {
@@ -74,11 +82,12 @@
         align-items: center;
         justify-content: space-between;
         gap: 1rem;
-        padding: 1rem 1.1rem;
+        padding: 0.95rem 1.1rem;
         background: rgba(28, 26, 18, 0.88);
         border: 1px solid var(--border);
-        border-radius: 14px;
+        border-radius: var(--radius-lg);
         backdrop-filter: blur(8px);
+        box-shadow: var(--shadow-soft);
       }
 
       .brand {
@@ -98,38 +107,43 @@
       .brand span {
         font-size: 1.05rem;
         font-weight: 600;
+        letter-spacing: -0.01em;
       }
 
       .badge {
         border: 1px solid var(--accent-border);
-        background: linear-gradient(120deg, rgba(232, 96, 44, 0.22), rgba(232, 96, 44, 0.1));
+        background: linear-gradient(120deg, rgba(232, 96, 44, 0.26), rgba(232, 96, 44, 0.1));
         color: #ffd6c7;
-        padding: 0.35rem 0.75rem;
+        padding: 0.38rem 0.76rem;
         border-radius: 999px;
-        font-size: 0.78rem;
+        font-size: 0.74rem;
         text-transform: uppercase;
+        box-shadow: inset 0 0 0 1px rgba(232, 96, 44, 0.12);
       }
 
       .hero {
         margin-top: 1rem;
-        padding: 1.6rem 1.2rem 1.2rem;
+        padding: clamp(1.25rem, 3vw, 1.8rem) clamp(0.95rem, 2.3vw, 1.35rem) 1.2rem;
         background: linear-gradient(165deg, rgba(28, 26, 18, 0.94), rgba(38, 37, 30, 0.92));
         border: 1px solid var(--border);
-        border-radius: 14px;
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-soft);
       }
 
       .eyebrow {
         color: var(--subtext);
         text-transform: uppercase;
         font-size: 0.74rem;
+        font-weight: 500;
       }
 
       h1 {
-        margin: 0.55rem 0 0.7rem;
+        margin: 0.5rem 0 0.75rem;
         font-size: clamp(2.2rem, 5.6vw, 4.4rem);
-        line-height: 0.94;
+        line-height: 0.93;
         font-weight: 600;
-        letter-spacing: -0.02em;
+        letter-spacing: -0.03em;
+        text-wrap: balance;
       }
 
       .cursor-blink {
@@ -149,10 +163,12 @@
         max-width: 900px;
         color: var(--subtext);
         font-size: clamp(0.98rem, 1.6vw, 1.05rem);
+        line-height: 1.56;
+        text-wrap: pretty;
       }
 
       .divider {
-        margin: 1.45rem 0 1.1rem;
+        margin: 1.5rem 0 1.15rem;
         border-top: 1px solid var(--border);
         position: relative;
       }
@@ -168,14 +184,14 @@
       }
 
       section {
-        margin-bottom: 1.15rem;
+        margin-bottom: 1.2rem;
       }
 
       .section-header {
         display: flex;
         align-items: baseline;
         gap: 0.6rem;
-        margin-bottom: 0.68rem;
+        margin-bottom: 0.72rem;
       }
 
       .section-number {
@@ -189,39 +205,44 @@
         font-size: clamp(1.02rem, 2.6vw, 1.26rem);
         font-weight: 600;
         color: var(--text);
+        letter-spacing: -0.01em;
       }
 
       .grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 0.75rem;
+        gap: 0.8rem;
       }
 
       .card {
         border: 1px solid var(--border);
         background: linear-gradient(175deg, rgba(28, 26, 18, 0.94), rgba(38, 37, 30, 0.9));
-        border-radius: 12px;
-        padding: 0.92rem;
-        min-height: 154px;
+        border-radius: var(--radius-md);
+        padding: 0.95rem;
+        min-height: 160px;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
       }
 
       .card h3 {
         margin: 0;
         color: var(--text);
-        font-size: 0.94rem;
+        font-size: 0.95rem;
         font-weight: 600;
-        line-height: 1.3;
+        line-height: 1.32;
+        text-wrap: balance;
       }
 
       .card p {
-        margin: 0.46rem 0 0;
+        margin: 0.5rem 0 0;
         color: var(--subtext);
         font-size: 0.9rem;
+        line-height: 1.5;
+        text-wrap: pretty;
       }
 
       .stack {
         display: grid;
-        gap: 0.64rem;
+        gap: 0.66rem;
       }
 
       .track {
@@ -229,9 +250,10 @@
         border-right: 1px solid var(--border);
         border-top: 1px solid var(--border);
         border-bottom: 1px solid var(--border);
-        border-radius: 0 12px 12px 0;
-        padding: 0.82rem 0.9rem;
+        border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        padding: 0.86rem 0.92rem;
         background: linear-gradient(180deg, rgba(28, 26, 18, 0.9), rgba(38, 37, 30, 0.86));
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
       }
 
       .track h4 {
@@ -239,28 +261,32 @@
         color: var(--text);
         font-size: 0.94rem;
         font-weight: 600;
+        line-height: 1.3;
       }
 
       .track p {
-        margin: 0.32rem 0 0;
+        margin: 0.36rem 0 0;
         color: var(--subtext);
         font-size: 0.9rem;
+        line-height: 1.5;
+        text-wrap: pretty;
       }
 
       .questions {
         display: grid;
-        gap: 0.6rem;
+        gap: 0.62rem;
       }
 
       .question-row {
         display: grid;
         grid-template-columns: auto 1fr;
         align-items: center;
-        gap: 0.72rem;
+        gap: 0.75rem;
         background: linear-gradient(180deg, rgba(28, 26, 18, 0.9), rgba(38, 37, 30, 0.84));
         border: 1px solid var(--border);
-        border-radius: 11px;
-        padding: 0.64rem 0.82rem;
+        border-radius: var(--radius-md);
+        padding: 0.66rem 0.85rem;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
       }
 
       .question-index {
@@ -281,6 +307,7 @@
         margin: 0;
         color: var(--subtext);
         font-size: 0.9rem;
+        line-height: 1.48;
       }
 
       .question-row strong {
@@ -289,11 +316,12 @@
       }
 
       .reminder {
-        margin-top: 1.1rem;
+        margin-top: 1.14rem;
         border: 1px solid var(--accent-border);
         background: linear-gradient(135deg, rgba(232, 96, 44, 0.2), rgba(28, 26, 18, 0.94) 42%, rgba(28, 26, 18, 0.94));
-        border-radius: 14px;
-        padding: 1rem;
+        border-radius: var(--radius-lg);
+        padding: 1.04rem;
+        box-shadow: var(--shadow-soft);
       }
 
       .reminder h3 {
@@ -301,39 +329,47 @@
         font-size: 1rem;
         color: #ffd5c5;
         font-weight: 600;
+        letter-spacing: -0.005em;
       }
 
       .reminder p {
         margin: 0.45rem 0 0;
         color: #f7d9cd;
         font-size: 0.96rem;
+        line-height: 1.52;
+        text-wrap: pretty;
       }
 
       footer {
         margin-top: 1.25rem;
         border-top: 1px solid var(--border);
-        padding-top: 0.9rem;
+        padding-top: 0.92rem;
         display: flex;
         justify-content: space-between;
         gap: 0.8rem;
         color: var(--muted);
         font-size: 0.75rem;
+        letter-spacing: 0.03em;
       }
 
       .interactive {
-        transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+        transition:
+          transform 220ms ease,
+          border-color 220ms ease,
+          box-shadow 220ms ease,
+          background-color 220ms ease;
       }
 
       .interactive:hover {
         transform: translateY(-3px);
         border-color: var(--accent-border);
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
+        box-shadow: var(--shadow-elevated);
       }
 
       .reveal {
         opacity: 0;
-        transform: translateY(14px);
-        transition: opacity 560ms ease, transform 560ms ease;
+        transform: translateY(12px);
+        transition: opacity 540ms ease, transform 540ms ease;
         transition-delay: var(--delay, 0ms);
       }
 
@@ -351,7 +387,7 @@
       @media (max-width: 720px) {
         .app {
           width: min(var(--container), calc(100vw - 1.3rem));
-          padding-top: 0.7rem;
+          padding-top: 0.65rem;
         }
 
         .topbar {
@@ -359,7 +395,7 @@
         }
 
         .hero {
-          padding: 1.25rem 0.92rem 1rem;
+          padding: 1.18rem 0.9rem 1rem;
         }
 
         .badge {
@@ -375,6 +411,20 @@
           flex-direction: column;
           align-items: flex-start;
           gap: 0.35rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .interactive,
+        .reveal,
+        .cursor-blink {
+          animation: none !important;
+          transition: none !important;
+          transform: none !important;
+        }
+
+        .reveal {
+          opacity: 1;
         }
       }
     </style>
@@ -399,7 +449,7 @@
           Gutshall<span class="cursor-blink">|</span>
         </h1>
         <p class="tagline">
-          Coming from Qlik, Splunk, and Evolv - bringing a proven enterprise sales track record across data, AI, and
+          Coming from Qlik, Splunk, and Evolv — bringing a proven enterprise sales track record across data, AI, and
           analytics to help Cursor win high-value life sciences accounts and build durable pipeline fast.
         </p>
       </section>
@@ -477,8 +527,8 @@
           <article class="track interactive">
             <h4>Closing Ask</h4>
             <p>
-              Understand ideal profile, where I'd ramp fastest, ask "What does success look like in the first 90
-              days?"
+              Understand ideal profile, where I’d ramp fastest, ask “What does success look like in the first 90
+              days?”
             </p>
           </article>
         </div>
@@ -492,7 +542,7 @@
         <div class="questions">
           <article class="question-row interactive">
             <span class="question-index mono">1</span>
-            <p><strong>GTM motion</strong> - PLG-assisted or building outbound enterprise muscle?</p>
+            <p><strong>GTM motion</strong> — PLG-assisted or building outbound enterprise muscle?</p>
           </article>
           <article class="question-row interactive">
             <span class="question-index mono">2</span>
@@ -500,7 +550,7 @@
           </article>
           <article class="question-row interactive">
             <span class="question-index mono">3</span>
-            <p><strong>Sales team structure</strong> - AEs, SEs, CSMs, how territories divided?</p>
+            <p><strong>Sales team structure</strong> — AEs, SEs, CSMs, how territories divided?</p>
           </article>
           <article class="question-row interactive">
             <span class="question-index mono">4</span>
@@ -512,7 +562,7 @@
           </article>
           <article class="question-row interactive">
             <span class="question-index mono">6</span>
-            <p><strong>Life sciences vertical</strong> - existing traction or greenfield?</p>
+            <p><strong>Life sciences vertical</strong> — existing traction or greenfield?</p>
           </article>
         </div>
       </section>
@@ -521,7 +571,7 @@
         <h3>Reminder to Self</h3>
         <p>
           This call is mutual discovery. Lead with curiosity, show genuine conviction for the product, and close with
-          a clear ask for next steps. You've earned the right to be here.
+          a clear ask for next steps. You’ve earned the right to be here.
         </p>
       </section>
 
