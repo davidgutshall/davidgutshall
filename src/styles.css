@@ -1,0 +1,179 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+:root {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #111827;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #ffffff;
+}
+
+.app-shell {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem;
+}
+
+.page-header {
+  margin-bottom: 1.8rem;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: clamp(1.55rem, 2vw, 2.15rem);
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0.55rem 0 0;
+  color: #64748b;
+  font-size: 0.98rem;
+  font-weight: 500;
+}
+
+.planner-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.07);
+  padding: 1.25rem;
+  min-height: 530px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 0.8rem;
+  margin-bottom: 0.95rem;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.panel-header p {
+  margin: 0.45rem 0 0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.outline-input {
+  width: 100%;
+  flex: 1;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 1rem;
+  color: #0f172a;
+  font-size: 0.97rem;
+  line-height: 1.5;
+  resize: none;
+  background: #ffffff;
+}
+
+.outline-input:focus {
+  border-color: #94a3b8;
+  outline: 2px solid rgba(148, 163, 184, 0.2);
+  outline-offset: 1px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.assist-btn {
+  border: 1px solid #d1d5db;
+  background: #f8fafc;
+  color: #0f172a;
+  border-radius: 10px;
+  padding: 0.64rem 0.9rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.assist-btn:hover {
+  border-color: #cbd5e1;
+  background: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+.assist-btn.active {
+  background: #e2e8f0;
+  border-color: #94a3b8;
+}
+
+.assist-btn:active {
+  transform: translateY(0);
+}
+
+.suggestions {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fcfcfd;
+  padding: 1rem;
+  flex: 1;
+}
+
+.suggestions h3 {
+  margin: 0 0 0.8rem;
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.suggestions ul {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.suggestions li {
+  color: #1f2937;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.empty-state {
+  margin: 0;
+  color: #94a3b8;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 900px) {
+  .planner-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    min-height: 430px;
+  }
+}
