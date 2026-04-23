@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recruiter Call Guide | David Gutshall</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Berkeley+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #14120b;
+        --surface: #1c1a12;
+        --surface-2: #26251e;
+        --border: #2e2c24;
+        --accent: #e8602c;
+        --accent-dim: rgba(232, 96, 44, 0.12);
+        --accent-border: rgba(232, 96, 44, 0.28);
+        --text: #f7f7f4;
+        --subtext: #8a8880;
+        --muted: #3e3c34;
+        --container: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        background: radial-gradient(circle at top right, rgba(232, 96, 44, 0.08), transparent 42%), var(--bg);
+        color: var(--text);
+        min-height: 100vh;
+        line-height: 1.45;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.18;
+        mix-blend-mode: soft-light;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23noiseFilter)' opacity='0.56'/%3E%3C/svg%3E");
+      }
+
+      .app {
+        position: relative;
+        z-index: 2;
+        width: min(var(--container), calc(100vw - 3rem));
+        margin: 0 auto;
+        padding: 1.25rem 0 2rem;
+      }
+
+      .mono {
+        font-family: "Berkeley Mono", "IBM Plex Mono", "SFMono-Regular", ui-monospace, Menlo, monospace;
+        letter-spacing: 0.04em;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 1.1rem;
+        background: rgba(28, 26, 18, 0.88);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        backdrop-filter: blur(8px);
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .brand img {
+        width: 24px;
+        height: 24px;
+        display: block;
+      }
+
+      .brand span {
+        font-size: 1.05rem;
+        font-weight: 600;
+      }
+
+      .badge {
+        border: 1px solid var(--accent-border);
+        background: linear-gradient(120deg, rgba(232, 96, 44, 0.22), rgba(232, 96, 44, 0.1));
+        color: #ffd6c7;
+        padding: 0.35rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+      }
+
+      .hero {
+        margin-top: 1rem;
+        padding: 1.6rem 1.2rem 1.2rem;
+        background: linear-gradient(165deg, rgba(28, 26, 18, 0.94), rgba(38, 37, 30, 0.92));
+        border: 1px solid var(--border);
+        border-radius: 14px;
+      }
+
+      .eyebrow {
+        color: var(--subtext);
+        text-transform: uppercase;
+        font-size: 0.74rem;
+      }
+
+      h1 {
+        margin: 0.55rem 0 0.7rem;
+        font-size: clamp(2.2rem, 5.6vw, 4.4rem);
+        line-height: 0.94;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+
+      .cursor-blink {
+        color: var(--accent);
+        font-weight: 500;
+        animation: blink 1s steps(2, start) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .tagline {
+        margin: 0;
+        max-width: 900px;
+        color: var(--subtext);
+        font-size: clamp(0.98rem, 1.6vw, 1.05rem);
+      }
+
+      .divider {
+        margin: 1.45rem 0 1.1rem;
+        border-top: 1px solid var(--border);
+        position: relative;
+      }
+
+      .divider::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: -1px;
+        width: 84px;
+        height: 2px;
+        background: var(--accent);
+      }
+
+      section {
+        margin-bottom: 1.15rem;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: baseline;
+        gap: 0.6rem;
+        margin-bottom: 0.68rem;
+      }
+
+      .section-number {
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 600;
+      }
+
+      .section-title {
+        margin: 0;
+        font-size: clamp(1.02rem, 2.6vw, 1.26rem);
+        font-weight: 600;
+        color: var(--text);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 0.75rem;
+      }
+
+      .card {
+        border: 1px solid var(--border);
+        background: linear-gradient(175deg, rgba(28, 26, 18, 0.94), rgba(38, 37, 30, 0.9));
+        border-radius: 12px;
+        padding: 0.92rem;
+        min-height: 154px;
+      }
+
+      .card h3 {
+        margin: 0;
+        color: var(--text);
+        font-size: 0.94rem;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .card p {
+        margin: 0.46rem 0 0;
+        color: var(--subtext);
+        font-size: 0.9rem;
+      }
+
+      .stack {
+        display: grid;
+        gap: 0.64rem;
+      }
+
+      .track {
+        border-left: 3px solid var(--accent);
+        border-right: 1px solid var(--border);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        border-radius: 0 12px 12px 0;
+        padding: 0.82rem 0.9rem;
+        background: linear-gradient(180deg, rgba(28, 26, 18, 0.9), rgba(38, 37, 30, 0.86));
+      }
+
+      .track h4 {
+        margin: 0;
+        color: var(--text);
+        font-size: 0.94rem;
+        font-weight: 600;
+      }
+
+      .track p {
+        margin: 0.32rem 0 0;
+        color: var(--subtext);
+        font-size: 0.9rem;
+      }
+
+      .questions {
+        display: grid;
+        gap: 0.6rem;
+      }
+
+      .question-row {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 0.72rem;
+        background: linear-gradient(180deg, rgba(28, 26, 18, 0.9), rgba(38, 37, 30, 0.84));
+        border: 1px solid var(--border);
+        border-radius: 11px;
+        padding: 0.64rem 0.82rem;
+      }
+
+      .question-index {
+        font-size: 0.72rem;
+        min-width: 1.68rem;
+        height: 1.68rem;
+        border-radius: 8px;
+        border: 1px solid var(--accent-border);
+        color: #f5bca8;
+        background: var(--accent-dim);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+      }
+
+      .question-row p {
+        margin: 0;
+        color: var(--subtext);
+        font-size: 0.9rem;
+      }
+
+      .question-row strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .reminder {
+        margin-top: 1.1rem;
+        border: 1px solid var(--accent-border);
+        background: linear-gradient(135deg, rgba(232, 96, 44, 0.2), rgba(28, 26, 18, 0.94) 42%, rgba(28, 26, 18, 0.94));
+        border-radius: 14px;
+        padding: 1rem;
+      }
+
+      .reminder h3 {
+        margin: 0;
+        font-size: 1rem;
+        color: #ffd5c5;
+        font-weight: 600;
+      }
+
+      .reminder p {
+        margin: 0.45rem 0 0;
+        color: #f7d9cd;
+        font-size: 0.96rem;
+      }
+
+      footer {
+        margin-top: 1.25rem;
+        border-top: 1px solid var(--border);
+        padding-top: 0.9rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 0.8rem;
+        color: var(--muted);
+        font-size: 0.75rem;
+      }
+
+      .interactive {
+        transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+      }
+
+      .interactive:hover {
+        transform: translateY(-3px);
+        border-color: var(--accent-border);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 560ms ease, transform 560ms ease;
+        transition-delay: var(--delay, 0ms);
+      }
+
+      body.loaded .reveal {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 1080px) {
+        .grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 720px) {
+        .app {
+          width: min(var(--container), calc(100vw - 1.3rem));
+          padding-top: 0.7rem;
+        }
+
+        .topbar {
+          padding: 0.9rem;
+        }
+
+        .hero {
+          padding: 1.25rem 0.92rem 1rem;
+        }
+
+        .badge {
+          font-size: 0.68rem;
+          padding: 0.3rem 0.52rem;
+        }
+
+        .grid {
+          grid-template-columns: 1fr;
+        }
+
+        footer {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.35rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar reveal">
+        <a class="brand" href="#" aria-label="Cursor home">
+          <img
+            src="https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/brand/brand-logo-1.svg"
+            alt="Cursor logo"
+          />
+          <span>Cursor</span>
+        </a>
+        <div class="badge mono">Recruiter Call · Friday</div>
+      </header>
+
+      <section class="hero reveal">
+        <div class="eyebrow mono">Candidate · Sales AE</div>
+        <h1>
+          David<br />
+          Gutshall<span class="cursor-blink">|</span>
+        </h1>
+        <p class="tagline">
+          Coming from Qlik, Splunk, and Evolv - bringing a proven enterprise sales track record across data, AI, and
+          analytics to help Cursor win high-value life sciences accounts and build durable pipeline fast.
+        </p>
+      </section>
+
+      <div class="divider reveal"></div>
+
+      <section class="reveal">
+        <div class="section-header">
+          <span class="section-number mono">01</span>
+          <h2 class="section-title">Experience &amp; Background</h2>
+        </div>
+        <div class="grid">
+          <article class="card interactive">
+            <h3>Splunk / Enterprise Data &amp; Security</h3>
+            <p>Complex enterprise deals in data observability and security analytics.</p>
+          </article>
+          <article class="card interactive">
+            <h3>Qlik / Analytics &amp; BI</h3>
+            <p>Sold into regulated industries including life sciences.</p>
+          </article>
+          <article class="card interactive">
+            <h3>Evolv / AI-Powered Optimization</h3>
+            <p>AI platform deals from cold outreach to close.</p>
+          </article>
+          <article class="card interactive">
+            <h3>Through-line / AI × Enterprise × Life Sciences</h3>
+            <p>Selling complex technical platforms to enterprise buyers who need ROI clarity.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="section-header">
+          <span class="section-number mono">02</span>
+          <h2 class="section-title">Why Cursor</h2>
+        </div>
+        <div class="stack">
+          <article class="track interactive">
+            <h4>The Timing</h4>
+            <p>PLG to enterprise motion, same as Splunk and Qlik, want to build the playbook not inherit it.</p>
+          </article>
+          <article class="track interactive">
+            <h4>The Category</h4>
+            <p>Life sciences under pressure to ship faster, Cursor solves that, I have the relationships.</p>
+          </article>
+          <article class="track interactive">
+            <h4>The Product</h4>
+            <p>I use tools like Cursor, selling something I believe in changes the conversation.</p>
+          </article>
+          <article class="track interactive">
+            <h4>The Opportunity</h4>
+            <p>Early enterprise AE at a category-defining AI company, once-in-a-career moment.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="section-header">
+          <span class="section-number mono">03</span>
+          <h2 class="section-title">Call Talk Track</h2>
+        </div>
+        <div class="stack">
+          <article class="track interactive">
+            <h4>Opening (60 sec)</h4>
+            <p>Background in data/AI/enterprise, Cursor sits in that sweet spot.</p>
+          </article>
+          <article class="track interactive">
+            <h4>Differentiator Moment</h4>
+            <p>Life sciences pipeline, no real incumbent, wide-open lane.</p>
+          </article>
+          <article class="track interactive">
+            <h4>Handling "You're Not a Dev Tool Seller"</h4>
+            <p>Buyers always technical, deals always business-value, same motion whether CISO or VP Eng.</p>
+          </article>
+          <article class="track interactive">
+            <h4>Closing Ask</h4>
+            <p>
+              Understand ideal profile, where I'd ramp fastest, ask "What does success look like in the first 90
+              days?"
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="section-header">
+          <span class="section-number mono">04</span>
+          <h2 class="section-title">Questions to Ask the Recruiter</h2>
+        </div>
+        <div class="questions">
+          <article class="question-row interactive">
+            <span class="question-index mono">1</span>
+            <p><strong>GTM motion</strong> - PLG-assisted or building outbound enterprise muscle?</p>
+          </article>
+          <article class="question-row interactive">
+            <span class="question-index mono">2</span>
+            <p><strong>Which verticals</strong> most focused on in next 12 months?</p>
+          </article>
+          <article class="question-row interactive">
+            <span class="question-index mono">3</span>
+            <p><strong>Sales team structure</strong> - AEs, SEs, CSMs, how territories divided?</p>
+          </article>
+          <article class="question-row interactive">
+            <span class="question-index mono">4</span>
+            <p><strong>What profile</strong> has performed best, where have reps struggled?</p>
+          </article>
+          <article class="question-row interactive">
+            <span class="question-index mono">5</span>
+            <p><strong>Interview process</strong> from here, what makes someone stand out?</p>
+          </article>
+          <article class="question-row interactive">
+            <span class="question-index mono">6</span>
+            <p><strong>Life sciences vertical</strong> - existing traction or greenfield?</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="reminder interactive reveal">
+        <h3>Reminder to Self</h3>
+        <p>
+          This call is mutual discovery. Lead with curiosity, show genuine conviction for the product, and close with
+          a clear ask for next steps. You've earned the right to be here.
+        </p>
+      </section>
+
+      <footer class="mono reveal">
+        <span>David Gutshall · Cursor Sales Interview</span>
+        <span>Built with Cursor · Friday Intro Call</span>
+      </footer>
+    </main>
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const revealNodes = document.querySelectorAll(".reveal");
+        revealNodes.forEach((node, index) => {
+          node.style.setProperty("--delay", `${Math.min(index * 70, 760)}ms`);
+        });
+        requestAnimationFrame(() => document.body.classList.add("loaded"));
+      });
+    </script>
+  </body>
+</html>
