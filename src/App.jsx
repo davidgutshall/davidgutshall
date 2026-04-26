@@ -115,7 +115,7 @@ const PIPELINE = [
     subtitle: "Named account pursuit",
     color: RED,
     points: [
-      "Build a named pharma account plan (J&J, Pfizer, Merck, IQVIA, Thermo Fisher) focused on large engineering orgs with complex codebases and active digital transformation mandates",
+      "Build a named pharma account plan (ex. Eli Lilly, J&J, Pfizer, and Merck) focused on large engineering orgs with complex codebases and active digital transformation mandates",
       'Map 6-8 personas per account and lead with a clear POV: "Your engineers are spending 40% of their time on work Cursor can accelerate - and your competitors are already using it"',
       "Run high-quality, targeted outreach sequences tied to triggers: new CTO hires, platform modernization announcements, R&D pipeline expansions, or developer conference activity",
       "Anchor every outreach in business value: faster drug discovery cycles, reduced time from code to compliance, lower cost per feature - not product features",
