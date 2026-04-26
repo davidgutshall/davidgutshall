@@ -69,6 +69,19 @@ button {
     line-height: 1.55 !important;
   }
 
+  .hero-heading-row {
+    align-items: flex-start !important;
+    flex-direction: column-reverse;
+    gap: 18px !important;
+  }
+
+  .headshot-card {
+    align-self: flex-start;
+    height: 112px !important;
+    padding: 5px !important;
+    width: 112px !important;
+  }
+
   .hero-badges,
   .hero-metrics {
     grid-template-columns: 1fr !important;

@@ -14,6 +14,8 @@ const DARK = "#1A1714";
 const WHITE = "#FFFFFF";
 const CREAM = "#F5F0EB";
 const DARK_MID = "#2C2420";
+const HEADSHOT_URL =
+  "https://media.licdn.com/dms/image/v2/D4E03AQHsrIJxKCLwjA/profile-displayphoto-scale_200_200/B4EZ11FkVkJcAc-/0/1775785887709?e=2147483647&v=beta&t=o02HWrb0XcDfO56EwoHbWUJ9y_W0TVJHLb891etTExE";
 
 const DAYS = [
   {
@@ -346,6 +348,12 @@ const styles = {
   heroCopy: {
     maxWidth: 720,
   },
+  heroTitleLockup: {
+    display: "flex",
+    alignItems: "flex-end",
+    gap: 24,
+    marginBottom: 24,
+  },
   heroTag: {
     display: "inline-flex",
     alignItems: "center",
@@ -366,8 +374,33 @@ const styles = {
     fontWeight: 800,
     lineHeight: 0.96,
     letterSpacing: "-0.07em",
-    marginBottom: 24,
+    margin: 0,
     maxWidth: 760,
+  },
+  headshotCard: {
+    background: "rgba(255, 255, 255, 0.1)",
+    border: "1px solid rgba(255, 255, 255, 0.16)",
+    borderRadius: 24,
+    padding: 10,
+    boxShadow: "0 24px 60px rgba(0, 0, 0, 0.28)",
+    flex: "0 0 auto",
+  },
+  headshotImage: {
+    width: 132,
+    height: 132,
+    borderRadius: 18,
+    display: "block",
+    objectFit: "cover",
+    border: "1px solid rgba(255, 255, 255, 0.22)",
+  },
+  headshotCaption: {
+    color: "#FFD7C7",
+    fontSize: 11,
+    fontWeight: 800,
+    letterSpacing: "0.1em",
+    marginTop: 9,
+    textAlign: "center",
+    textTransform: "uppercase",
   },
   heroSub: {
     fontSize: "clamp(17px, 1.8vw, 21px)",
@@ -1022,9 +1055,15 @@ export default function App() {
         <div className="hero-inner" style={styles.heroInner}>
           <div className="hero-copy" style={styles.heroCopy}>
             <span style={styles.heroTag}>Operating Plan . Life Sciences</span>
-            <h1 className="hero-title" style={styles.heroTitle}>
-              Building enterprise growth <span style={{ color: "#FF9A70" }}>in pharma</span>
-            </h1>
+            <div className="hero-heading-row" style={styles.heroTitleLockup}>
+              <h1 className="hero-title" style={styles.heroTitle}>
+                Building enterprise growth <span style={{ color: "#FF9A70" }}>in pharma</span>
+              </h1>
+              <div className="headshot-card" style={styles.headshotCard}>
+                <img src={HEADSHOT_URL} alt="David Gutshall headshot" style={styles.headshotImage} />
+                <div style={styles.headshotCaption}>David Gutshall</div>
+              </div>
+            </div>
             <p className="hero-subtitle" style={styles.heroSub}>
               A sharper operating plan for identifying signal, developing champions, and turning
               Cursor's product-led adoption into durable enterprise contracts across pharma.
