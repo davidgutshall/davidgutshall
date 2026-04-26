@@ -23,12 +23,12 @@ const DAYS = [
     title: "Learn, Listen & Map the Terrain",
     tagline: "Earn the right to sell",
     color: ORANGE,
-    milestone: "Clear view of where momentum already exists across all named pharma accounts",
+    milestone: "Clear view of where momentum already exists across all named life sciences & biotech accounts",
     sections: [
       {
         heading: "Product Fluency",
         items: [
-          "Earn the right to sell by achieving deep product fluency. Learn to explain Cursor inside pharma workflows: clinical data pipelines, bioinformatics, regulatory submission tools, and internal R&D platforms",
+          "Earn the right to sell by achieving deep product fluency. Learn to explain Cursor inside life sciences & biotech workflows: clinical data pipelines, bioinformatics, regulatory submission tools, and internal R&D platforms",
           "Study Cursor's pricing model until I can explain seat tiers, consumption, and enterprise licensing in my sleep. Understand how deals have been structured at comparable life sciences accounts",
         ],
       },
@@ -36,13 +36,13 @@ const DAYS = [
         heading: "Internal Alignment",
         items: [
           "Get tight with my Solutions Engineer, Customer Success, and SDR partners. Shadow calls. Understand the customer journey from first user to enterprise contract",
-          "Identify which channel and technology partners (consulting firms, SI partners, cloud resellers) already have relationships inside my target pharma accounts",
+          "Identify which channel and technology partners (consulting firms, SI partners, cloud resellers) already have relationships inside my target life sciences & biotech accounts",
         ],
       },
       {
         heading: "Account Planning",
         items: [
-          "Research and build a tiered account plan for my named pharma accounts including target contacts at the VP and Director level",
+          "Research and build a tiered account plan for my named life sciences & biotech accounts including target contacts at the VP and Director level",
           "Schedule at least one intro call or warm conversation for each target account before day 30",
         ],
       },
@@ -94,14 +94,14 @@ const DAYS = [
       {
         heading: "Account Cadence",
         items: [
-          "Maintain biweekly cadence with all other accounts. Bring something useful each time: relevant pharma case study, workflow benchmark, or peer story from a comparable organization",
+          "Maintain biweekly cadence with all other accounts. Bring something useful each time: relevant life sciences & biotech case study, workflow benchmark, or peer story from a comparable organization",
           "Build executive alignment at the two most advanced accounts: connect developer productivity gains to business metrics - faster drug discovery cycles, reduced time to deployment, lower engineering cost per feature",
         ],
       },
       {
         heading: "Internal Leadership",
         items: [
-          "Internally, build my reputation on the team. Contribute to deal reviews, share learnings from pharma accounts, and establish myself as the go-to voice on life sciences enterprise selling",
+          "Internally, build my reputation on the team. Contribute to deal reviews, share learnings from life sciences & biotech accounts, and establish myself as the go-to voice on life sciences enterprise selling",
           "By day 90: 4x pipeline coverage of quota with at least 50% at Stage 2 or beyond, one pilot running or formally proposed, and clear documented next steps for every named account",
         ],
       },
@@ -117,7 +117,7 @@ const PIPELINE = [
     subtitle: "Named account pursuit",
     color: RED,
     points: [
-      "Build a named pharma account plan (ex. Eli Lilly, J&J, Pfizer, and Merck) focused on large engineering orgs with complex codebases and active digital transformation mandates",
+      "Build a named life sciences & biotech account plan (ex. Eli Lilly, J&J, Pfizer, and Merck) focused on large engineering orgs with complex codebases and active digital transformation mandates",
       'Map 6-8 personas per account and lead with a clear POV: "Your engineers are spending 40% of their time on work Cursor can accelerate - and your competitors are already using it"',
       "Run high-quality, targeted outreach sequences tied to triggers: new CTO hires, platform modernization announcements, R&D pipeline expansions, or developer conference activity",
       "Anchor every outreach in business value: faster drug discovery cycles, reduced time from code to compliance, lower cost per feature - not product features",
@@ -131,11 +131,11 @@ const PIPELINE = [
     subtitle: "Champion development",
     color: ORANGE,
     points: [
-      "Leverage Cursor's built-in PLG motion as an inbound pipeline signal: usage data shows which pharma accounts already have active Cursor users before any enterprise conversation begins",
+      "Leverage Cursor's built-in PLG motion as an inbound pipeline signal: usage data shows which life sciences & biotech accounts already have active Cursor users before any enterprise conversation begins",
       "Engage individual practitioners already using Cursor inside target accounts. These are my future champions. Validate their workflow wins, help them tell the story internally, give them proof points",
       "Convert champion activity into structured pilots and enterprise scoping sessions. The champion's credibility with their engineering leadership is what opens the enterprise door",
       "Position myself as a problem-solver and trusted advisor to engineering leaders - not a rep running a quota play",
-      "Use real-world pharma workflow use cases (bioinformatics pipeline debugging, clinical data tooling, regulatory documentation automation) to accelerate trust and shorten sales cycles significantly",
+      "Use real-world life sciences & biotech workflow use cases (bioinformatics pipeline debugging, clinical data tooling, regulatory documentation automation) to accelerate trust and shorten sales cycles significantly",
     ],
   },
   {
@@ -145,9 +145,9 @@ const PIPELINE = [
     subtitle: "Expand & champion network",
     color: "#2d7f1d",
     points: [
-      "Run structured account reviews at every existing pharma customer to identify expansion signals: new engineering teams, new data platforms, new R&D initiatives that Cursor is not yet supporting",
+      "Run structured account reviews at every existing life sciences & biotech customer to identify expansion signals: new engineering teams, new data platforms, new R&D initiatives that Cursor is not yet supporting",
       "Drive land-and-expand plays across business units. One champion in bioinformatics should lead to conversations in clinical tech, regulatory affairs engineering, and manufacturing automation",
-      "Turn customers into internal advocates, case study contributors, and peer references within the pharma industry. A Merck VP vouching for Cursor to a J&J peer is worth more than any pitch",
+      "Turn customers into internal advocates, case study contributors, and peer references within the life sciences & biotech industry. A Merck VP vouching for Cursor to a J&J peer is worth more than any pitch",
       "Ask champions for warm peer introductions to create qualified pipeline across the sector",
       "Partner closely with Customer Success to proactively identify expansion signals, health scores, and any risk of churn before it becomes a problem",
     ],
@@ -159,23 +159,23 @@ const PIPELINE = [
     subtitle: "Pipeline engines",
     color: "#9333ea",
     points: [
-      "Treat industry events as pipeline engines, not brand plays. Target key pharma and biotech engineering forums: BioIT World, HIMSS Life Sciences, DPharm, and developer-focused tracks at major cloud conferences",
+      "Treat industry events as pipeline engines, not brand plays. Target key life sciences & biotech engineering forums: BioIT World, HIMSS Life Sciences, DPharm, and developer-focused tracks at major cloud conferences",
       "Pre-book 8-12 meetings with named target contacts before every event. Warm outreach, not cold badge-scanning",
       'Lead with a sharp hook: "How much of your engineering team\'s time is spent on work that an AI pair programmer could accelerate today?"',
       "Focus on quality conversations with engineering leaders and senior developers, then convert within 48 hours to a next step (demo, workflow session, or pilot scoping call)",
-      "Supplement with small executive dinners (6-10 people) targeting CTOs and VP Engineering from top pharma accounts to drive deeper relationships and peer learning",
+      "Supplement with small executive dinners (6-10 people) targeting CTOs and VP Engineering from top life sciences & biotech accounts to drive deeper relationships and peer learning",
     ],
   },
   {
     id: "partners",
     icon: "🤝",
     title: "Partners",
-    subtitle: "Reach inside top-tier pharma",
+    subtitle: "Reach inside top-tier life sciences & biotech",
     color: "#0369a3",
     points: [
-      "Focus on partners with reach inside top-tier pharma: global SIs (Accenture, Deloitte, Cognizant), cloud hyperscalers (AWS, Azure with life sciences practices), and specialist life sciences consulting firms",
+      "Focus on partners with reach inside top-tier life sciences & biotech: global SIs (Accenture, Deloitte, Cognizant), cloud hyperscalers (AWS, Azure with life sciences practices), and specialist life sciences consulting firms",
       "Build joint account plans co-selling into active digital transformation and R&D modernization projects where Cursor can accelerate the engineering layer",
-      'Enable partners with a sharp message: "Cursor gives your pharma clients a measurable productivity return in week one - no rip-and-replace, no lengthy onboarding, no compliance risk"',
+      'Enable partners with a sharp message: "Cursor gives your life sciences & biotech clients a measurable productivity return in week one - no rip-and-replace, no lengthy onboarding, no compliance risk"',
       "Hold partners accountable to pipeline creation, not just deal support. Define shared targets by account and review monthly",
       "Prioritize partners already embedded in GxP-compliant environments - they bring access and credibility that cold outreach cannot replicate",
     ],
@@ -187,7 +187,7 @@ const MARKET = [
     heading: "Massive, Expensive Engineering Teams",
     color: ORANGE,
     points: [
-      "Top 20 pharma companies each employ 2,000-10,000+ software engineers",
+      "Top 20 life sciences & biotech companies each employ 2,000-10,000+ software engineers",
       "Developer time costs $150-250/hour fully loaded; any productivity gain compounds rapidly",
       "R&D timelines are under intense pressure - speed to code is speed to cure",
     ],
@@ -228,7 +228,7 @@ const WHY_CURSOR = [
     icon: "⚙️",
     stats: "4x Faster · Full Repo Context",
     points: [
-      "Cursor understands entire repositories, not just the open file - critical for pharma's layered systems",
+      "Cursor understands entire repositories, not just the open file - critical for layered life sciences & biotech systems",
       "Edits code directly in-context; eliminates copy-paste and context switching across tools",
       "Proprietary Composer model trained on real engineering workflows",
     ],
@@ -240,7 +240,7 @@ const WHY_CURSOR = [
     points: [
       "Developers adopt Cursor individually, validate it, then advocate internally",
       "36% free-to-paid conversion rate proves the product sells itself",
-      "PLG motion means Cursor already has users inside target pharma accounts, my job is to find and scale them",
+      "PLG motion means Cursor already has users inside target life sciences & biotech accounts, my job is to find and scale them",
     ],
   },
 ];
@@ -791,7 +791,7 @@ function MarketSection() {
     <div style={{ background: "transparent" }}>
       <div className="app-section" style={styles.section}>
         <div style={styles.sectionLabel}>CONTEXT</div>
-        <div className="section-title" style={styles.sectionTitle}>The Pharma Engineering Landscape Today</div>
+        <div className="section-title" style={styles.sectionTitle}>The Life Sciences & Biotech Engineering Landscape Today</div>
         <div className="card-grid" style={styles.marketGrid}>
           {MARKET.map((m) => (
             <div className="modern-card" key={m.heading} style={styles.marketCard(m.color)}>
@@ -822,7 +822,7 @@ function WhyCursorSection() {
     <div style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.72), rgba(247,243,238,0.45))" }}>
       <div className="app-section" style={styles.section}>
         <div style={styles.sectionLabel}>THE OPPORTUNITY</div>
-        <div className="section-title" style={styles.sectionTitle}>Why Cursor is Positioned to Win in Pharma</div>
+        <div className="section-title" style={styles.sectionTitle}>Why Cursor is Positioned to Win in Life Sciences & Biotech</div>
         <div className="card-grid" style={styles.whyGrid}>
           {WHY_CURSOR.map((w) => (
             <div className="modern-card" key={w.heading} style={styles.whyCard}>
@@ -1048,7 +1048,7 @@ export default function App() {
             <span style={styles.heroTag}>Operating Plan . Life Sciences</span>
             <div className="hero-heading-row" style={styles.heroTitleLockup}>
               <h1 className="hero-title" style={styles.heroTitle}>
-                Building enterprise growth <span style={{ color: "#FF9A70" }}>in pharma</span>
+                Building enterprise growth <span style={{ color: "#FF9A70" }}>in life sciences & biotech</span>
               </h1>
               <div className="headshot-card" style={styles.headshotCard}>
                 <img src={HEADSHOT_URL} alt="David Gutshall headshot" style={styles.headshotImage} />
@@ -1056,7 +1056,7 @@ export default function App() {
             </div>
             <p className="hero-subtitle" style={styles.heroSub}>
               A sharper operating plan for identifying signal, developing champions, and turning
-              Cursor's product-led adoption into durable enterprise contracts across pharma.
+              Cursor's product-led adoption into durable enterprise contracts across life sciences & biotech.
             </p>
             <div className="hero-badges" style={styles.heroBadges}>
               <div style={styles.heroBadge}>
@@ -1073,7 +1073,7 @@ export default function App() {
               </div>
               <div style={styles.heroBadge}>
                 <span style={styles.heroBadgeLabel}>Focus</span>
-                Large Enterprise Pharma
+                Large Enterprise Life Sciences & Biotech
               </div>
             </div>
           </div>
@@ -1083,7 +1083,7 @@ export default function App() {
             <div style={styles.heroPanelTitle}>Signal to champions to enterprise contracts.</div>
             <BulletList
               items={[
-                "Map active Cursor usage and engineering stakeholders inside named pharma accounts",
+                "Map active Cursor usage and engineering stakeholders inside named life sciences & biotech accounts",
                 "Turn practitioner wins into structured pilots with measurable productivity outcomes",
                 "Build focused pipeline through outbound, PLG signal, customers, events, and partners",
               ]}
