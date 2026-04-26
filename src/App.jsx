@@ -1061,7 +1061,7 @@ export default function App() {
             <div className="hero-badges" style={styles.heroBadges}>
               <div style={styles.heroBadge}>
                 <span style={styles.heroBadgeLabel}>Prepared For</span>
-                John Vaugh - VP, Enterprise Sales
+                Phil Tonachio - GVP, Enterprise Sales, Life Sciences
               </div>
               <div style={styles.heroBadge}>
                 <span style={styles.heroBadgeLabel}>Presenter</span>
