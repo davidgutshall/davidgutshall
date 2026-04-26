@@ -1045,7 +1045,6 @@ export default function App() {
 
         <div className="hero-inner" style={styles.heroInner}>
           <div className="hero-copy" style={styles.heroCopy}>
-            <span style={styles.heroTag}>Operating Plan . Life Sciences</span>
             <div className="hero-heading-row" style={styles.heroTitleLockup}>
               <h1 className="hero-title" style={styles.heroTitle}>
                 Building enterprise growth <span style={{ color: "#FF9A70" }}>in life sciences & biotech</span>
