@@ -1061,7 +1061,7 @@ export default function App() {
             <div className="hero-badges" style={styles.heroBadges}>
               <div style={styles.heroBadge}>
                 <span style={styles.heroBadgeLabel}>Prepared For</span>
-                Phil Tonachio - GVP, Enterprise Sales, Life Sciences
+                Phil Tonachio - GVP, Life Sciences and Biotech
               </div>
               <div style={styles.heroBadge}>
                 <span style={styles.heroBadgeLabel}>Presenter</span>
