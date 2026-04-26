@@ -765,12 +765,12 @@ function BulletList({ items, dotColor = ORANGE }) {
 function MarketSection() {
   return (
     <div style={{ background: "transparent" }}>
-      <div style={styles.section}>
+      <div className="app-section" style={styles.section}>
         <div style={styles.sectionLabel}>CONTEXT</div>
-        <div style={styles.sectionTitle}>The Pharma Engineering Landscape Today</div>
-        <div style={styles.marketGrid}>
+        <div className="section-title" style={styles.sectionTitle}>The Pharma Engineering Landscape Today</div>
+        <div className="card-grid" style={styles.marketGrid}>
           {MARKET.map((m) => (
-            <div key={m.heading} style={styles.marketCard(m.color)}>
+            <div className="modern-card" key={m.heading} style={styles.marketCard(m.color)}>
               <div style={styles.marketHeading(m.color)}>
                 <span
                   style={{
@@ -796,12 +796,12 @@ function MarketSection() {
 function WhyCursorSection() {
   return (
     <div style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.72), rgba(247,243,238,0.45))" }}>
-      <div style={styles.section}>
+      <div className="app-section" style={styles.section}>
         <div style={styles.sectionLabel}>THE OPPORTUNITY</div>
-        <div style={styles.sectionTitle}>Why Cursor is Positioned to Win in Pharma</div>
-        <div style={styles.whyGrid}>
+        <div className="section-title" style={styles.sectionTitle}>Why Cursor is Positioned to Win in Pharma</div>
+        <div className="card-grid" style={styles.whyGrid}>
           {WHY_CURSOR.map((w) => (
-            <div key={w.heading} style={styles.whyCard}>
+            <div className="modern-card" key={w.heading} style={styles.whyCard}>
               <span style={styles.whyIcon}>{w.icon}</span>
               <div
                 style={{
@@ -831,11 +831,11 @@ function DayPlanSection() {
 
   return (
     <div style={{ background: "transparent" }}>
-      <div style={styles.section}>
+      <div className="app-section" style={styles.section}>
         <div style={styles.sectionLabel}>EXECUTION PLAN</div>
-        <div style={styles.sectionTitle}>First 30 . 60 . 90 Days</div>
+        <div className="section-title" style={styles.sectionTitle}>First 30 . 60 . 90 Days</div>
 
-        <div style={styles.dayNav}>
+        <div className="day-nav" style={styles.dayNav}>
           {DAYS.map((d, i) => (
             <button
               key={d.num}
@@ -849,8 +849,8 @@ function DayPlanSection() {
           ))}
         </div>
 
-        <div style={styles.dayCard}>
-          <div style={styles.dayHeader}>
+        <div className="day-card" style={styles.dayCard}>
+          <div className="day-header" style={styles.dayHeader}>
             <div>
               <div style={styles.dayLabel}>Day Plan</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
@@ -863,10 +863,10 @@ function DayPlanSection() {
             </div>
           </div>
 
-          <div style={styles.dayBody}>
-            <div style={styles.sectionGrid}>
+          <div className="day-body" style={styles.dayBody}>
+            <div className="card-grid" style={styles.sectionGrid}>
               {day.sections.map((sec) => (
-                <div key={sec.heading} style={styles.sectionBox}>
+                <div className="modern-card" key={sec.heading} style={styles.sectionBox}>
                   <div style={styles.sectionBoxHead}>{sec.heading}</div>
                   <BulletList items={sec.items} />
                 </div>
@@ -892,12 +892,13 @@ function PipelineSection() {
 
   return (
     <div style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.7), rgba(251,250,248,0.95))" }}>
-      <div style={styles.section}>
+      <div className="app-section" style={styles.section}>
         <div style={styles.sectionLabel}>GROWTH STRATEGY</div>
-        <div style={styles.sectionTitle}>Pipeline Growth Plan</div>
-        <div style={styles.pipelineGrid}>
+        <div className="section-title" style={styles.sectionTitle}>Pipeline Growth Plan</div>
+        <div className="card-grid" style={styles.pipelineGrid}>
           {PIPELINE.map((p) => (
             <div
+              className="modern-card pipeline-card"
               key={p.id}
               style={{
                 ...styles.pipelineCard(p.color),
@@ -965,21 +966,29 @@ export default function App() {
 
   return (
     <div style={styles.app}>
-      <header style={styles.header}>
-        <CursorLogo size={28} />
-        <nav style={styles.nav}>
+      <header className="site-header" style={styles.header}>
+        <div className="site-logo">
+          <CursorLogo size={28} />
+        </div>
+        <nav className="site-nav" style={styles.nav}>
           {NAV_ITEMS.map((item) => (
-            <button key={item.id} style={styles.navBtn(activeSection === item.id)} onClick={() => scrollTo(item.id)} type="button">
+            <button
+              className="nav-button"
+              key={item.id}
+              style={styles.navBtn(activeSection === item.id)}
+              onClick={() => scrollTo(item.id)}
+              type="button"
+            >
               {item.label}
             </button>
           ))}
         </nav>
-        <div style={styles.headerRight}>
+        <div className="header-context" style={styles.headerRight}>
           <span>Life Sciences . Enterprise SAE</span>
         </div>
       </header>
 
-      <section id="overview" style={styles.hero}>
+      <section className="hero-section" id="overview" style={styles.hero}>
         <div
           style={{
             position: "absolute",
@@ -1005,17 +1014,17 @@ export default function App() {
           }}
         />
 
-        <div style={styles.heroInner}>
-          <div style={styles.heroCopy}>
+        <div className="hero-inner" style={styles.heroInner}>
+          <div className="hero-copy" style={styles.heroCopy}>
             <span style={styles.heroTag}>Operating Plan . Life Sciences</span>
-            <h1 style={styles.heroTitle}>
+            <h1 className="hero-title" style={styles.heroTitle}>
               Building enterprise growth <span style={{ color: "#FF9A70" }}>in pharma</span>
             </h1>
-            <p style={styles.heroSub}>
+            <p className="hero-subtitle" style={styles.heroSub}>
               A sharper operating plan for identifying signal, developing champions, and turning
               Cursor's product-led adoption into durable enterprise contracts across pharma.
             </p>
-            <div style={styles.heroBadges}>
+            <div className="hero-badges" style={styles.heroBadges}>
               <div style={styles.heroBadge}>
                 <span style={styles.heroBadgeLabel}>Prepared For</span>
                 John Vaugh - VP, Enterprise Sales
@@ -1035,7 +1044,7 @@ export default function App() {
             </div>
           </div>
 
-          <aside style={styles.heroPanel}>
+          <aside className="hero-panel" style={styles.heroPanel}>
             <div style={styles.heroPanelLabel}>Execution Focus</div>
             <div style={styles.heroPanelTitle}>Signal to champions to enterprise contracts.</div>
             <BulletList
@@ -1046,7 +1055,7 @@ export default function App() {
               ]}
               dotColor={ORANGE}
             />
-            <div style={styles.heroMetricGrid}>
+            <div className="hero-metrics" style={styles.heroMetricGrid}>
               <div style={styles.heroMetric}>
                 <div style={styles.heroMetricValue}>90</div>
                 <div style={styles.heroMetricLabel}>day operating cadence</div>

@@ -14,3 +14,157 @@ body {
 button {
   font: inherit;
 }
+
+@media (max-width: 920px) {
+  .site-header {
+    align-items: flex-start !important;
+    flex-direction: column;
+    gap: 12px !important;
+    min-height: auto !important;
+    padding: 14px 16px 12px !important;
+  }
+
+  .site-nav {
+    align-self: stretch;
+    border-radius: 18px !important;
+    gap: 4px !important;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 4px !important;
+    scrollbar-width: none;
+    width: 100%;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .site-nav button {
+    flex: 0 0 auto;
+    padding: 8px 11px !important;
+    white-space: nowrap;
+  }
+
+  .header-kicker {
+    display: none !important;
+  }
+
+  .hero {
+    padding: 48px 16px 42px !important;
+  }
+
+  .hero-inner {
+    display: flex !important;
+    flex-direction: column;
+    gap: 26px !important;
+  }
+
+  .hero-title {
+    font-size: clamp(42px, 13vw, 58px) !important;
+    letter-spacing: -0.06em !important;
+  }
+
+  .hero-sub {
+    font-size: 16px !important;
+    line-height: 1.55 !important;
+  }
+
+  .hero-badges,
+  .hero-metrics {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-panel {
+    border-radius: 22px !important;
+    padding: 22px !important;
+    width: 100%;
+  }
+
+  .app-section {
+    padding: 54px 16px !important;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .modern-card {
+    border-radius: 20px !important;
+    padding: 22px !important;
+  }
+
+  .day-nav {
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .day-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .day-nav button {
+    flex: 0 0 auto;
+    padding-right: 14px !important;
+  }
+
+  .day-card {
+    border-radius: 22px !important;
+  }
+
+  .day-header {
+    align-items: flex-start !important;
+    flex-direction: column;
+    padding: 28px 22px !important;
+  }
+
+  .day-body {
+    padding: 22px !important;
+  }
+
+  .pipeline-card {
+    cursor: default;
+  }
+
+  .site-footer {
+    align-items: flex-start !important;
+    flex-direction: column;
+    padding: 24px 16px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-header svg,
+  .site-footer svg {
+    max-width: 112px;
+  }
+
+  .hero-tag {
+    font-size: 10px !important;
+    letter-spacing: 0.11em !important;
+  }
+
+  .section-title {
+    font-size: clamp(30px, 10vw, 40px) !important;
+    margin-bottom: 24px !important;
+  }
+
+  .hero-panel-title {
+    font-size: 23px !important;
+  }
+
+  .hero-metric {
+    padding: 14px !important;
+  }
+
+  .day-nav {
+    border-radius: 20px !important;
+    width: 100% !important;
+  }
+
+  .day-nav button {
+    flex: 1 0 104px;
+    justify-content: center;
+  }
+}
