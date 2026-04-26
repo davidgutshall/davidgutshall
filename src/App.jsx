@@ -1064,7 +1064,7 @@ export default function App() {
               </div>
               <div style={styles.heroBadge}>
                 <span style={styles.heroBadgeLabel}>Presenter</span>
-                David Gutshall
+                David Gutshall, Strategic Account Executive
               </div>
               <div style={styles.heroBadge}>
                 <span style={styles.heroBadgeLabel}>Date</span>
