@@ -240,7 +240,7 @@ const WHY_CURSOR = [
     points: [
       "Developers adopt Cursor individually, validate it, then advocate internally",
       "36% free-to-paid conversion rate proves the product sells itself",
-      "PLG motion means Cursor already has users inside target pharma accounts - my job is to find and scale them",
+      "PLG motion means Cursor already has users inside target pharma accounts, my job is to find and scale them",
     ],
   },
 ];
