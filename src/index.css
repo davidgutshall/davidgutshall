@@ -64,22 +64,33 @@ button {
     letter-spacing: -0.06em !important;
   }
 
-  .hero-sub {
+  .hero-subtitle {
     font-size: 16px !important;
     line-height: 1.55 !important;
   }
 
   .hero-heading-row {
     align-items: flex-start !important;
-    flex-direction: column-reverse;
-    gap: 18px !important;
+    flex-direction: column;
+    gap: 20px !important;
   }
 
   .headshot-card {
     align-self: flex-start;
-    height: 112px !important;
-    padding: 5px !important;
-    width: 112px !important;
+    height: auto !important;
+    padding: 6px !important;
+    width: 118px !important;
+  }
+
+  .headshot-card img {
+    border-radius: 14px !important;
+    height: 96px !important;
+    width: 96px !important;
+  }
+
+  .headshot-card div {
+    font-size: 9px !important;
+    margin-top: 6px !important;
   }
 
   .hero-badges,
