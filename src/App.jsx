@@ -393,15 +393,6 @@ const styles = {
     objectFit: "cover",
     border: "1px solid rgba(255, 255, 255, 0.22)",
   },
-  headshotCaption: {
-    color: "#FFD7C7",
-    fontSize: 11,
-    fontWeight: 800,
-    letterSpacing: "0.1em",
-    marginTop: 9,
-    textAlign: "center",
-    textTransform: "uppercase",
-  },
   heroSub: {
     fontSize: "clamp(17px, 1.8vw, 21px)",
     color: "#D7CFC8",
@@ -1061,7 +1052,6 @@ export default function App() {
               </h1>
               <div className="headshot-card" style={styles.headshotCard}>
                 <img src={HEADSHOT_URL} alt="David Gutshall headshot" style={styles.headshotImage} />
-                <div style={styles.headshotCaption}>David Gutshall</div>
               </div>
             </div>
             <p className="hero-subtitle" style={styles.heroSub}>

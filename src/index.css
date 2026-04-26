@@ -79,18 +79,13 @@ button {
     align-self: flex-start;
     height: auto !important;
     padding: 6px !important;
-    width: 118px !important;
+    width: auto !important;
   }
 
   .headshot-card img {
     border-radius: 14px !important;
     height: 96px !important;
     width: 96px !important;
-  }
-
-  .headshot-card div {
-    font-size: 9px !important;
-    margin-top: 6px !important;
   }
 
   .hero-badges,
