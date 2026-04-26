@@ -175,7 +175,7 @@ const PIPELINE = [
     points: [
       "Focus on partners with reach inside top-tier life sciences & biotech: global SIs (Accenture, Deloitte, Cognizant), cloud hyperscalers (AWS, Azure with life sciences practices), and specialist life sciences consulting firms",
       "Build joint account plans co-selling into active digital transformation and R&D modernization projects where Cursor can accelerate the engineering layer",
-      'Enable partners with a sharp message: "Cursor gives your life sciences & biotech clients a measurable productivity return in week one - no rip-and-replace, no lengthy onboarding, no compliance risk"',
+      'Enable partners with a sharp message: "Cursor gives your life sciences & biotech clients a measurable productivity return in week one. There’s no rip-and-replace, no lengthy onboarding, and no compliance risk"',
       "Hold partners accountable to pipeline creation, not just deal support. Define shared targets by account and review monthly",
       "Prioritize partners already embedded in GxP-compliant environments. They bring access and credibility that cold outreach cannot replicate",
     ],
