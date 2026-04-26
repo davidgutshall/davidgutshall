@@ -134,7 +134,7 @@ const PIPELINE = [
       "Leverage Cursor's built-in PLG motion as an inbound pipeline signal: usage data shows which life sciences & biotech accounts already have active Cursor users before any enterprise conversation begins",
       "Engage individual practitioners already using Cursor inside target accounts. These are my future champions. Validate their workflow wins, help them tell the story internally, give them proof points",
       "Convert champion activity into structured pilots and enterprise scoping sessions. The champion's credibility with their engineering leadership is what opens the enterprise door",
-      "Position myself as a problem-solver and trusted advisor to engineering leaders - not a rep running a quota play",
+      "Position myself as a problem solver and trusted advisor to engineering leaders, not a rep running a quota play",
       "Use real-world life sciences & biotech workflow use cases (bioinformatics pipeline debugging, clinical data tooling, regulatory documentation automation) to accelerate trust and shorten sales cycles significantly",
     ],
   },
