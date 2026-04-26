@@ -206,7 +206,7 @@ const MARKET = [
     color: "#0369a3",
     points: [
       "Bioinformatics pipelines, clinical trial platforms, ERP integrations, and IoT stacks run in parallel",
-      "Legacy code debt is enormous - Cursor's codebase-awareness is uniquely suited to this environment",
+      "Legacy code debt is enormous. Cursor's codebase-awareness is uniquely suited to this environment",
       "Multi-cloud and on-prem hybrid setups create constant context-switching pain that Cursor eliminates",
     ],
   },
