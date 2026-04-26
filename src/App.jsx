@@ -26,7 +26,7 @@ const DAYS = [
       {
         heading: "Product Fluency",
         items: [
-          "Earn the right to sell by achieving deep product fluency - learn to explain Cursor inside pharma workflows: clinical data pipelines, bioinformatics, regulatory submission tools, and internal R&D platforms",
+          "Earn the right to sell by achieving deep product fluency. Learn to explain Cursor inside pharma workflows: clinical data pipelines, bioinformatics, regulatory submission tools, and internal R&D platforms",
           "Study Cursor's pricing model until I can explain seat tiers, consumption, and enterprise licensing in my sleep. Understand how deals have been structured at comparable life sciences accounts",
         ],
       },
