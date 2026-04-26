@@ -196,7 +196,7 @@ const MARKET = [
     heading: "Regulated but Not Immune to Innovation",
     color: RED,
     points: [
-      "GxP, 21 CFR Part 11, SOX, and HIPAA create compliance overhead - not a barrier to AI tooling",
+      "GxP, 21 CFR Part 11, SOX, and HIPAA create compliance overhead, not a barrier to AI tooling",
       "Validation requirements create demand for accurate, well-documented code generation",
       "IT leaders are under CTO mandate to modernize without compromising audit trails",
     ],
