@@ -957,6 +957,11 @@ function PipelineSection() {
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("overview");
+  const currentDate = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date());
 
   const scrollTo = (id) => {
     setActiveSection(id);
@@ -1035,7 +1040,7 @@ export default function App() {
               </div>
               <div style={styles.heroBadge}>
                 <span style={styles.heroBadgeLabel}>Date</span>
-                April 25, 2026
+                {currentDate}
               </div>
               <div style={styles.heroBadge}>
                 <span style={styles.heroBadgeLabel}>Focus</span>
@@ -1093,10 +1098,10 @@ export default function App() {
         <PipelineSection />
       </div>
 
-      <footer style={styles.footer}>
+      <footer className="site-footer" style={styles.footer}>
         <CursorLogo size={22} />
         <div style={{ ...styles.footerText, textAlign: "center" }}>
-          Enterprise Sales Operating Plan . Life Sciences . April 2026
+          Enterprise Sales Operating Plan . Life Sciences . {currentDate}
         </div>
         <div style={styles.footerText}>Confidential . David Gutshall</div>
       </footer>
