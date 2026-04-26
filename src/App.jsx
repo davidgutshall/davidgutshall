@@ -228,7 +228,7 @@ const WHY_CURSOR = [
     icon: "⚙️",
     stats: "4x Faster · Full Repo Context",
     points: [
-      "Cursor understands entire repositories, not just the open file - critical for layered life sciences & biotech systems",
+      "Cursor understands entire repositories, not just the open file which is critical for layered life sciences & biotech systems",
       "Edits code directly in-context; eliminates copy-paste and context switching across tools",
       "Proprietary Composer model trained on real engineering workflows",
     ],
