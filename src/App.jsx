@@ -189,7 +189,7 @@ const MARKET = [
     points: [
       "Top 20 life sciences & biotech companies each employ 2,000-10,000+ software engineers",
       "Developer time costs $150-250/hour fully loaded; any productivity gain compounds rapidly",
-      "R&D timelines are under intense pressure - speed to code is speed to cure",
+      "R&D timelines are under intense pressure. Speed to code is speed to cure",
     ],
   },
   {
