@@ -1013,7 +1013,7 @@ export default function App() {
           ))}
         </nav>
         <div className="header-context" style={styles.headerRight}>
-          <span>Life Sciences . Enterprise SAE</span>
+          <span>Operating Plan . Life Sciences & Biotech</span>
         </div>
       </header>
 
@@ -1129,7 +1129,7 @@ export default function App() {
       <footer className="site-footer" style={styles.footer}>
         <CursorLogo size={22} />
         <div style={{ ...styles.footerText, textAlign: "center" }}>
-          Enterprise Sales Operating Plan . Life Sciences . {currentDate}
+          Enterprise Sales Operating Plan . Life Sciences & Biotech . {currentDate}
         </div>
         <div style={styles.footerText}>Confidential . David Gutshall</div>
       </footer>
