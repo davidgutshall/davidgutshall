@@ -274,205 +274,295 @@ const NAV_ITEMS = [
 
 const styles = {
   app: {
-    fontFamily: "Arial, 'Helvetica Neue', sans-serif",
-    background: CREAM,
+    fontFamily:
+      "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    background: "linear-gradient(180deg, #FBFAF8 0%, #F7F3EE 45%, #FBFAF8 100%)",
     minHeight: "100vh",
-    color: DARK,
+    color: "#171412",
   },
   header: {
-    background: DARK,
-    borderBottom: `3px solid ${ORANGE}`,
+    background: "rgba(251, 250, 248, 0.88)",
+    borderBottom: "1px solid rgba(26, 23, 20, 0.08)",
+    backdropFilter: "blur(18px)",
     position: "sticky",
     top: 0,
     zIndex: 100,
-    padding: "0 40px",
+    padding: "0 clamp(20px, 4vw, 56px)",
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    height: 64,
+    minHeight: 76,
+    gap: 24,
   },
   headerRight: {
     display: "flex",
     alignItems: "center",
     gap: 8,
-    fontSize: 12,
-    color: "#78716C",
-    letterSpacing: "0.05em",
+    fontSize: 11,
+    color: "#7C7168",
+    letterSpacing: "0.12em",
+    textTransform: "uppercase",
+    whiteSpace: "nowrap",
   },
   nav: {
     display: "flex",
-    gap: 4,
+    gap: 6,
     alignItems: "center",
+    background: "rgba(255, 255, 255, 0.72)",
+    border: "1px solid rgba(26, 23, 20, 0.08)",
+    borderRadius: 999,
+    padding: 5,
+    boxShadow: "0 10px 30px rgba(26, 23, 20, 0.05)",
   },
   navBtn: (active) => ({
-    padding: "8px 16px",
-    borderRadius: 6,
+    padding: "9px 14px",
+    borderRadius: 999,
     border: "none",
     cursor: "pointer",
-    fontSize: 13,
-    fontWeight: active ? "700" : "400",
-    background: active ? ORANGE : "transparent",
-    color: active ? WHITE : "#94A3B8",
-    transition: "all 0.2s",
-    letterSpacing: "0.02em",
+    fontSize: 12,
+    fontWeight: 700,
+    background: active ? DARK : "transparent",
+    color: active ? WHITE : "#6F645C",
+    transition: "background 0.2s, color 0.2s, transform 0.2s",
+    letterSpacing: "0.01em",
   }),
   hero: {
-    background: DARK,
+    background:
+      "radial-gradient(circle at 82% 18%, rgba(232, 93, 38, 0.18), transparent 32%), linear-gradient(135deg, #171412 0%, #29211C 58%, #3A2A22 100%)",
     color: WHITE,
-    padding: "80px 40px 80px",
+    padding: "clamp(72px, 9vw, 128px) clamp(20px, 4vw, 56px)",
     position: "relative",
     overflow: "hidden",
   },
+  heroInner: {
+    position: "relative",
+    maxWidth: 1180,
+    margin: "0 auto",
+    display: "grid",
+    gridTemplateColumns: "minmax(0, 1.1fr) minmax(320px, 0.72fr)",
+    gap: "clamp(32px, 6vw, 72px)",
+    alignItems: "center",
+  },
+  heroCopy: {
+    maxWidth: 720,
+  },
   heroTag: {
-    display: "inline-block",
-    background: ORANGE,
-    color: WHITE,
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    background: "rgba(255, 255, 255, 0.1)",
+    color: "#FFD7C7",
     fontSize: 11,
-    fontWeight: "700",
-    letterSpacing: "0.12em",
-    padding: "4px 12px",
-    borderRadius: 4,
+    fontWeight: 800,
+    letterSpacing: "0.14em",
+    padding: "8px 12px",
+    borderRadius: 999,
     marginBottom: 24,
     textTransform: "uppercase",
+    border: "1px solid rgba(255, 255, 255, 0.14)",
   },
   heroTitle: {
-    fontSize: "clamp(36px, 5vw, 64px)",
-    fontWeight: "700",
-    lineHeight: 1.05,
-    letterSpacing: "-1.5px",
+    fontSize: "clamp(44px, 7vw, 88px)",
+    fontWeight: 800,
+    lineHeight: 0.96,
+    letterSpacing: "-0.07em",
     marginBottom: 24,
-    fontFamily: "'Aptos Display', 'Georgia', serif",
-    maxWidth: 700,
+    maxWidth: 760,
   },
   heroSub: {
-    fontSize: 18,
-    color: "#94A3B8",
-    marginBottom: 40,
-    maxWidth: 600,
-    lineHeight: 1.6,
+    fontSize: "clamp(17px, 1.8vw, 21px)",
+    color: "#D7CFC8",
+    marginBottom: 34,
+    maxWidth: 650,
+    lineHeight: 1.65,
   },
   heroBadges: {
-    display: "flex",
-    gap: 16,
-    flexWrap: "wrap",
+    display: "grid",
+    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    gap: 12,
   },
   heroBadge: {
-    background: DARK_MID,
-    border: "1px solid #2C2420",
-    borderRadius: 8,
-    padding: "12px 20px",
+    background: "rgba(255, 255, 255, 0.08)",
+    border: "1px solid rgba(255, 255, 255, 0.12)",
+    borderRadius: 16,
+    padding: "16px 18px",
     fontSize: 13,
-    color: "#CBD5E1",
+    color: "#F7F3EE",
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)",
   },
   heroBadgeLabel: {
-    color: ORANGE,
-    fontWeight: "700",
+    color: "#FFB494",
+    fontWeight: 800,
     display: "block",
-    fontSize: 11,
-    letterSpacing: "0.1em",
+    fontSize: 10,
+    letterSpacing: "0.14em",
     textTransform: "uppercase",
     marginBottom: 4,
   },
+  heroPanel: {
+    background: "rgba(255, 255, 255, 0.94)",
+    color: DARK,
+    border: "1px solid rgba(255, 255, 255, 0.5)",
+    borderRadius: 28,
+    padding: 28,
+    boxShadow: "0 28px 80px rgba(0, 0, 0, 0.28)",
+  },
+  heroPanelLabel: {
+    color: ORANGE,
+    fontSize: 11,
+    fontWeight: 800,
+    letterSpacing: "0.14em",
+    textTransform: "uppercase",
+    marginBottom: 10,
+  },
+  heroPanelTitle: {
+    fontSize: 28,
+    fontWeight: 800,
+    letterSpacing: "-0.04em",
+    lineHeight: 1.05,
+    marginBottom: 18,
+  },
+  heroMetricGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    gap: 12,
+    marginTop: 22,
+  },
+  heroMetric: {
+    background: "#F8F5F1",
+    border: "1px solid #EEE6DE",
+    borderRadius: 18,
+    padding: 16,
+  },
+  heroMetricValue: {
+    fontSize: 24,
+    fontWeight: 850,
+    letterSpacing: "-0.04em",
+    color: DARK,
+  },
+  heroMetricLabel: {
+    fontSize: 12,
+    lineHeight: 1.45,
+    color: "#766B62",
+    marginTop: 4,
+  },
   section: {
-    padding: "64px 40px",
-    maxWidth: 1200,
+    padding: "clamp(72px, 9vw, 112px) clamp(20px, 4vw, 56px)",
+    maxWidth: 1180,
     margin: "0 auto",
   },
   sectionLabel: {
     fontSize: 11,
-    fontWeight: "700",
+    fontWeight: 850,
     letterSpacing: "0.15em",
     textTransform: "uppercase",
     color: ORANGE,
-    marginBottom: 8,
+    marginBottom: 12,
   },
   sectionTitle: {
-    fontSize: "clamp(28px, 3vw, 40px)",
-    fontWeight: "700",
-    lineHeight: 1.15,
-    letterSpacing: "-0.5px",
-    marginBottom: 40,
-    fontFamily: "'Aptos Display', 'Georgia', serif",
+    fontSize: "clamp(32px, 4vw, 52px)",
+    fontWeight: 850,
+    lineHeight: 1.03,
+    letterSpacing: "-0.055em",
+    marginBottom: 34,
     color: DARK,
+    maxWidth: 760,
   },
   marketGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-    gap: 24,
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gap: 18,
   },
   marketCard: (color) => ({
     background: WHITE,
-    borderRadius: 12,
+    borderRadius: 24,
     padding: 28,
-    borderTop: `4px solid ${color}`,
-    boxShadow: "0 2px 12px rgba(0,0,0,0.06)",
+    border: "1px solid rgba(26, 23, 20, 0.08)",
+    boxShadow: "0 18px 48px rgba(26, 23, 20, 0.06)",
+    position: "relative",
+    overflow: "hidden",
+    outline: `1px solid ${color}10`,
   }),
   marketHeading: (color) => ({
-    fontSize: 16,
-    fontWeight: "700",
+    fontSize: 18,
+    fontWeight: 800,
     color: DARK,
-    marginBottom: 16,
-    paddingLeft: 12,
-    borderLeft: `3px solid ${color}`,
+    marginBottom: 18,
+    letterSpacing: "-0.02em",
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    "--dot": color,
   }),
   whyGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-    gap: 24,
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gap: 18,
   },
   whyCard: {
-    background: DARK,
-    borderRadius: 12,
+    background: "linear-gradient(145deg, #FFFFFF 0%, #F8F5F1 100%)",
+    border: "1px solid rgba(26, 23, 20, 0.08)",
+    borderRadius: 24,
     padding: 28,
-    color: WHITE,
-    boxShadow: "0 4px 24px rgba(0,0,0,0.12)",
+    color: DARK,
+    boxShadow: "0 20px 54px rgba(26, 23, 20, 0.07)",
   },
   whyIcon: {
-    fontSize: 32,
-    marginBottom: 12,
-    display: "block",
+    width: 48,
+    height: 48,
+    borderRadius: 16,
+    background: "#FFF1EA",
+    color: ORANGE,
+    fontSize: 24,
+    marginBottom: 18,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   whyStat: {
-    background: ORANGE,
-    color: WHITE,
+    background: "#FFF1EA",
+    color: ORANGE,
     fontSize: 12,
-    fontWeight: "700",
-    padding: "4px 10px",
-    borderRadius: 4,
+    fontWeight: 850,
+    padding: "7px 11px",
+    borderRadius: 999,
     display: "inline-block",
     marginBottom: 16,
     letterSpacing: "0.02em",
   },
   dayNav: {
     display: "flex",
-    gap: 0,
-    marginBottom: 32,
-    borderRadius: 10,
-    overflow: "hidden",
-    border: `2px solid ${DARK}`,
+    gap: 8,
+    marginBottom: 26,
+    borderRadius: 999,
+    padding: 6,
+    background: WHITE,
+    border: "1px solid rgba(26, 23, 20, 0.08)",
     width: "fit-content",
+    boxShadow: "0 14px 36px rgba(26, 23, 20, 0.06)",
   },
   dayNavBtn: (active) => ({
-    padding: "14px 32px",
+    padding: "10px 18px 10px 10px",
     border: "none",
+    borderRadius: 999,
     cursor: "pointer",
     fontSize: 15,
-    fontWeight: "700",
+    fontWeight: 800,
     background: active ? DARK : WHITE,
     color: active ? WHITE : DARK,
-    transition: "all 0.2s",
+    transition: "all 0.2s ease",
     display: "flex",
     alignItems: "center",
     gap: 10,
   }),
   dayNumBadge: (active) => ({
-    width: 36,
-    height: 36,
+    width: 38,
+    height: 38,
     borderRadius: "50%",
-    background: active ? ORANGE : "#E5E7EB",
-    color: active ? WHITE : DARK,
+    background: active ? ORANGE : "#F1ECE6",
+    color: active ? WHITE : "#6F645C",
     fontSize: 15,
-    fontWeight: "700",
+    fontWeight: 850,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -480,13 +570,14 @@ const styles = {
   }),
   dayCard: {
     background: WHITE,
-    borderRadius: 16,
+    borderRadius: 28,
     overflow: "hidden",
-    boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
+    border: "1px solid rgba(26, 23, 20, 0.08)",
+    boxShadow: "0 24px 70px rgba(26, 23, 20, 0.08)",
   },
   dayHeader: {
-    background: DARK,
-    padding: "32px 40px",
+    background: "linear-gradient(135deg, #171412 0%, #32261F 100%)",
+    padding: "34px clamp(24px, 4vw, 44px)",
     display: "flex",
     alignItems: "flex-end",
     gap: 24,
@@ -494,78 +585,81 @@ const styles = {
     flexWrap: "wrap",
   },
   dayBigNum: {
-    fontSize: 80,
-    fontWeight: "700",
+    fontSize: "clamp(64px, 8vw, 104px)",
+    fontWeight: 900,
     color: ORANGE,
     lineHeight: 1,
-    fontFamily: "Arial Black, Arial, sans-serif",
-    letterSpacing: "-3px",
+    letterSpacing: "-0.08em",
   },
   dayLabel: {
     fontSize: 12,
-    color: "#94A3B8",
+    color: "#BDB2AA",
     textTransform: "uppercase",
     letterSpacing: "0.12em",
-    fontWeight: "700",
+    fontWeight: 850,
   },
   dayTitle: {
-    fontSize: 24,
-    fontWeight: "700",
+    fontSize: "clamp(24px, 3vw, 34px)",
+    fontWeight: 850,
     color: WHITE,
     marginBottom: 6,
-    fontFamily: "'Aptos Display', 'Georgia', serif",
     maxWidth: 500,
+    letterSpacing: "-0.04em",
+    lineHeight: 1.08,
   },
   dayTagline: {
     fontSize: 14,
-    color: ORANGE,
-    fontStyle: "italic",
+    color: "#FFB494",
+    fontWeight: 700,
   },
   dayBody: {
-    padding: "32px 40px",
+    padding: "clamp(24px, 4vw, 44px)",
   },
   sectionGrid: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
-    gap: 24,
+    gap: 16,
     marginBottom: 32,
   },
   sectionBox: {
-    background: CREAM,
-    borderRadius: 10,
-    padding: 20,
+    background: "#FBF8F4",
+    border: "1px solid #EFE7DF",
+    borderRadius: 20,
+    padding: 22,
   },
   sectionBoxHead: {
     fontSize: 12,
-    fontWeight: "700",
+    fontWeight: 850,
     color: ORANGE,
     textTransform: "uppercase",
     letterSpacing: "0.1em",
-    marginBottom: 12,
+    marginBottom: 14,
   },
   bulletItem: {
     display: "flex",
-    gap: 10,
-    marginBottom: 10,
+    gap: 12,
+    marginBottom: 12,
     fontSize: 14,
-    lineHeight: 1.55,
-    color: GRAY,
+    lineHeight: 1.62,
+    color: "#645A52",
   },
   bulletDot: {
-    width: 6,
-    height: 6,
+    width: 7,
+    height: 7,
     borderRadius: "50%",
     background: ORANGE,
-    marginTop: 6,
+    marginTop: 8,
     flexShrink: 0,
+    boxShadow: "0 0 0 4px rgba(232, 93, 38, 0.1)",
   },
   milestone: {
-    background: DARK,
-    borderRadius: 10,
-    padding: "16px 20px",
+    background: "#171412",
+    borderRadius: 20,
+    padding: "20px 22px",
     display: "flex",
     gap: 12,
     alignItems: "flex-start",
+    boxShadow: "0 16px 36px rgba(26, 23, 20, 0.18)",
   },
   milestoneIcon: {
     fontSize: 20,
@@ -573,14 +667,14 @@ const styles = {
     marginTop: 2,
   },
   milestoneText: {
-    fontSize: 13,
-    color: "#E2E8F0",
+    fontSize: 14,
+    color: "#EEE7DF",
     lineHeight: 1.6,
   },
   milestoneLabel: {
     fontSize: 11,
-    fontWeight: "700",
-    color: ORANGE,
+    fontWeight: 850,
+    color: "#FFB494",
     textTransform: "uppercase",
     letterSpacing: "0.1em",
     marginBottom: 4,
@@ -588,29 +682,30 @@ const styles = {
   },
   pipelineGrid: {
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
-    gap: 24,
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: 18,
   },
   pipelineCard: (color) => ({
     background: WHITE,
-    borderRadius: 12,
+    borderRadius: 24,
     overflow: "hidden",
-    boxShadow: "0 2px 16px rgba(0,0,0,0.07)",
-    borderTop: `4px solid ${color}`,
+    boxShadow: "0 18px 48px rgba(26, 23, 20, 0.06)",
+    border: "1px solid rgba(26, 23, 20, 0.08)",
     cursor: "pointer",
     transition: "transform 0.18s, box-shadow 0.18s",
+    outline: `1px solid ${color}10`,
   }),
   pipelineHeader: (color) => ({
-    padding: "20px 24px 16px",
-    borderBottom: "1px solid #F0EDE9",
+    padding: "22px 24px 18px",
+    borderBottom: "1px solid #F0E9E1",
     display: "flex",
     alignItems: "center",
     gap: 14,
   }),
   pipelineIconBg: (color) => ({
-    width: 44,
-    height: 44,
-    borderRadius: 10,
+    width: 48,
+    height: 48,
+    borderRadius: 16,
     background: `${color}18`,
     display: "flex",
     alignItems: "center",
@@ -619,18 +714,33 @@ const styles = {
     flexShrink: 0,
   }),
   pipelineTitle: {
-    fontSize: 16,
-    fontWeight: "700",
+    fontSize: 17,
+    fontWeight: 850,
     color: DARK,
     marginBottom: 2,
+    letterSpacing: "-0.02em",
   },
   pipelineSub: {
     fontSize: 12,
-    color: "#94A3B8",
+    color: "#7C7168",
     letterSpacing: "0.03em",
   },
   pipelineBody: {
-    padding: "16px 24px 20px",
+    padding: "18px 24px 24px",
+  },
+  footer: {
+    background: "#FBFAF8",
+    borderTop: "1px solid rgba(26, 23, 20, 0.08)",
+    padding: "30px clamp(20px, 4vw, 56px)",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap",
+    gap: 16,
+  },
+  footerText: {
+    fontSize: 12,
+    color: "#7C7168",
   },
 };
 
@@ -654,14 +764,26 @@ function BulletList({ items, dotColor = ORANGE }) {
 
 function MarketSection() {
   return (
-    <div style={{ background: WHITE, padding: "64px 0", borderTop: "1px solid #EDE8E2" }}>
+    <div style={{ background: "transparent" }}>
       <div style={styles.section}>
         <div style={styles.sectionLabel}>CONTEXT</div>
         <div style={styles.sectionTitle}>The Pharma Engineering Landscape Today</div>
         <div style={styles.marketGrid}>
           {MARKET.map((m) => (
             <div key={m.heading} style={styles.marketCard(m.color)}>
-              <div style={styles.marketHeading(m.color)}>{m.heading}</div>
+              <div style={styles.marketHeading(m.color)}>
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: 999,
+                    background: m.color,
+                    boxShadow: `0 0 0 6px ${m.color}14`,
+                    flexShrink: 0,
+                  }}
+                />
+                {m.heading}
+              </div>
               <BulletList items={m.points} dotColor={m.color} />
             </div>
           ))}
@@ -673,7 +795,7 @@ function MarketSection() {
 
 function WhyCursorSection() {
   return (
-    <div style={{ background: CREAM, padding: "64px 0" }}>
+    <div style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.72), rgba(247,243,238,0.45))" }}>
       <div style={styles.section}>
         <div style={styles.sectionLabel}>THE OPPORTUNITY</div>
         <div style={styles.sectionTitle}>Why Cursor is Positioned to Win in Pharma</div>
@@ -681,7 +803,16 @@ function WhyCursorSection() {
           {WHY_CURSOR.map((w) => (
             <div key={w.heading} style={styles.whyCard}>
               <span style={styles.whyIcon}>{w.icon}</span>
-              <div style={{ fontSize: 18, fontWeight: "700", color: WHITE, marginBottom: 8, lineHeight: 1.3 }}>
+              <div
+                style={{
+                  fontSize: 20,
+                  fontWeight: 850,
+                  color: DARK,
+                  marginBottom: 10,
+                  lineHeight: 1.18,
+                  letterSpacing: "-0.03em",
+                }}
+              >
                 {w.heading}
               </div>
               <span style={styles.whyStat}>{w.stats}</span>
@@ -699,7 +830,7 @@ function DayPlanSection() {
   const day = DAYS[activeDay];
 
   return (
-    <div style={{ background: WHITE, padding: "64px 0", borderTop: "1px solid #EDE8E2" }}>
+    <div style={{ background: "transparent" }}>
       <div style={styles.section}>
         <div style={styles.sectionLabel}>EXECUTION PLAN</div>
         <div style={styles.sectionTitle}>First 30 . 60 . 90 Days</div>
@@ -708,10 +839,7 @@ function DayPlanSection() {
           {DAYS.map((d, i) => (
             <button
               key={d.num}
-              style={{
-                ...styles.dayNavBtn(i === activeDay),
-                borderRight: i < DAYS.length - 1 ? `2px solid ${i === activeDay ? "#333" : "#E5E7EB"}` : "none",
-              }}
+              style={styles.dayNavBtn(i === activeDay)}
               onClick={() => setActiveDay(i)}
               type="button"
             >
@@ -763,7 +891,7 @@ function PipelineSection() {
   const [expanded, setExpanded] = useState(null);
 
   return (
-    <div style={{ background: CREAM, padding: "64px 0" }}>
+    <div style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.7), rgba(251,250,248,0.95))" }}>
       <div style={styles.section}>
         <div style={styles.sectionLabel}>GROWTH STRATEGY</div>
         <div style={styles.sectionTitle}>Pipeline Growth Plan</div>
@@ -774,7 +902,10 @@ function PipelineSection() {
               style={{
                 ...styles.pipelineCard(p.color),
                 transform: expanded === p.id ? "translateY(-4px)" : "translateY(0)",
-                boxShadow: expanded === p.id ? `0 8px 32px ${p.color}28` : "0 2px 16px rgba(0,0,0,0.07)",
+                boxShadow:
+                  expanded === p.id
+                    ? `0 24px 60px ${p.color}22`
+                    : "0 18px 48px rgba(26, 23, 20, 0.06)",
               }}
               onClick={() => setExpanded(expanded === p.id ? null : p.id)}
               onKeyDown={(event) => {
@@ -810,8 +941,8 @@ function PipelineSection() {
                 {expanded === p.id ? (
                   <BulletList items={p.points} dotColor={p.color} />
                 ) : (
-                  <div style={{ fontSize: 13, color: "#94A3B8", fontStyle: "italic" }}>
-                    Click to expand strategy →
+                  <div style={{ fontSize: 13, color: "#7C7168", fontWeight: 700 }}>
+                    Click to expand strategy
                   </div>
                 )}
               </div>
@@ -857,8 +988,8 @@ export default function App() {
             width: 400,
             height: 400,
             borderRadius: "50%",
-            background: DARK_MID,
-            opacity: 0.6,
+            background: "rgba(255, 255, 255, 0.08)",
+            opacity: 1,
           }}
         />
         <div
@@ -874,33 +1005,66 @@ export default function App() {
           }}
         />
 
-        <div style={{ position: "relative", maxWidth: 1200, margin: "0 auto" }}>
-          <span style={styles.heroTag}>Operating Plan . Life Sciences</span>
-          <h1 style={styles.heroTitle}>
-            Building Enterprise Growth <span style={{ color: ORANGE }}>in Pharma</span>
-          </h1>
-          <p style={styles.heroSub}>
-            A structured plan to identify signal, build champions, and turn Cursor's product-led growth into multi-year
-            enterprise contracts across the pharmaceutical sector.
-          </p>
-          <div style={styles.heroBadges}>
-            <div style={styles.heroBadge}>
-              <span style={styles.heroBadgeLabel}>Prepared For</span>
-              John Vaugh - VP, Enterprise Sales
-            </div>
-            <div style={styles.heroBadge}>
-              <span style={styles.heroBadgeLabel}>Presenter</span>
-              David Gutshall
-            </div>
-            <div style={styles.heroBadge}>
-              <span style={styles.heroBadgeLabel}>Date</span>
-              April 25, 2026
-            </div>
-            <div style={styles.heroBadge}>
-              <span style={styles.heroBadgeLabel}>Focus</span>
-              Large Enterprise Pharma
+        <div style={styles.heroInner}>
+          <div style={styles.heroCopy}>
+            <span style={styles.heroTag}>Operating Plan . Life Sciences</span>
+            <h1 style={styles.heroTitle}>
+              Building enterprise growth <span style={{ color: "#FF9A70" }}>in pharma</span>
+            </h1>
+            <p style={styles.heroSub}>
+              A sharper operating plan for identifying signal, developing champions, and turning
+              Cursor's product-led adoption into durable enterprise contracts across pharma.
+            </p>
+            <div style={styles.heroBadges}>
+              <div style={styles.heroBadge}>
+                <span style={styles.heroBadgeLabel}>Prepared For</span>
+                John Vaugh - VP, Enterprise Sales
+              </div>
+              <div style={styles.heroBadge}>
+                <span style={styles.heroBadgeLabel}>Presenter</span>
+                David Gutshall
+              </div>
+              <div style={styles.heroBadge}>
+                <span style={styles.heroBadgeLabel}>Date</span>
+                April 25, 2026
+              </div>
+              <div style={styles.heroBadge}>
+                <span style={styles.heroBadgeLabel}>Focus</span>
+                Large Enterprise Pharma
+              </div>
             </div>
           </div>
+
+          <aside style={styles.heroPanel}>
+            <div style={styles.heroPanelLabel}>Execution Focus</div>
+            <div style={styles.heroPanelTitle}>Signal to champions to enterprise contracts.</div>
+            <BulletList
+              items={[
+                "Map active Cursor usage and engineering stakeholders inside named pharma accounts",
+                "Turn practitioner wins into structured pilots with measurable productivity outcomes",
+                "Build focused pipeline through outbound, PLG signal, customers, events, and partners",
+              ]}
+              dotColor={ORANGE}
+            />
+            <div style={styles.heroMetricGrid}>
+              <div style={styles.heroMetric}>
+                <div style={styles.heroMetricValue}>90</div>
+                <div style={styles.heroMetricLabel}>day operating cadence</div>
+              </div>
+              <div style={styles.heroMetric}>
+                <div style={styles.heroMetricValue}>4x</div>
+                <div style={styles.heroMetricLabel}>pipeline coverage target</div>
+              </div>
+              <div style={styles.heroMetric}>
+                <div style={styles.heroMetricValue}>5</div>
+                <div style={styles.heroMetricLabel}>pipeline creation motions</div>
+              </div>
+              <div style={styles.heroMetric}>
+                <div style={styles.heroMetricValue}>50%+</div>
+                <div style={styles.heroMetricLabel}>Stage 2+ pipeline mix</div>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -920,23 +1084,12 @@ export default function App() {
         <PipelineSection />
       </div>
 
-      <footer
-        style={{
-          background: DARK,
-          borderTop: `3px solid ${ORANGE}`,
-          padding: "32px 40px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: 16,
-        }}
-      >
+      <footer style={styles.footer}>
         <CursorLogo size={22} />
-        <div style={{ fontSize: 12, color: "#78716C", textAlign: "center" }}>
+        <div style={{ ...styles.footerText, textAlign: "center" }}>
           Enterprise Sales Operating Plan . Life Sciences . April 2026
         </div>
-        <div style={{ fontSize: 12, color: "#78716C" }}>Confidential . David Gutshall</div>
+        <div style={styles.footerText}>Confidential . David Gutshall</div>
       </footer>
     </div>
   );
