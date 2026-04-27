@@ -1,829 +1,1138 @@
-import { useMemo, useState } from 'react'
-import { motion } from 'framer-motion'
-import {
-  Activity,
-  ArrowUpRight,
-  BarChart3,
-  BrainCircuit,
-  Building2,
-  Check,
-  ChevronDown,
-  CircleDot,
-  Code2,
-  Compass,
-  FlaskConical,
-  Gauge,
-  Handshake,
-  Layers3,
-  LineChart,
-  LockKeyhole,
-  Network,
-  Rocket,
-  ShieldCheck,
-  Sparkles,
-  Target,
-  Users,
-  Workflow,
-} from 'lucide-react'
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from 'recharts'
+import { useState } from "react";
 
-const navItems = [
-  ['Executive Summary', 'executive-summary'],
-  ['Pharma Landscape', 'pharma-landscape'],
-  ['Why Cursor Wins', 'why-cursor-wins'],
-  ['30-60-90 Plan', 'execution-plan'],
-  ['Pipeline Growth', 'pipeline-growth'],
-  ['Success Metrics', 'success-metrics'],
-]
+// Cursor Brand Colors (from the deck XML)
+// #E85D26 = Cursor orange (primary accent, day-plan numbers)
+// #595959 = body text gray
+// #F04E37 = red accent (section headings)
+// #1A1714 = near-black bg
+// #FFFFFF = white
 
-const kpis = [
-  { value: '4x', label: 'Pipeline Coverage by Day 90', icon: BarChart3 },
-  { value: '1', label: 'Pilot Running or Formally Proposed', icon: Rocket },
-  { value: '3+', label: 'Stakeholders Mapped Per Named Account', icon: Network },
-]
+const ORANGE = "#E85D26";
+const RED = "#F04E37";
+const GRAY = "#595959";
+const DARK = "#1A1714";
+const WHITE = "#FFFFFF";
+const CREAM = "#F5F0EB";
+const DARK_MID = "#2C2420";
+const HEADSHOT_URL =
+  "https://media.licdn.com/dms/image/v2/D4E03AQHsrIJxKCLwjA/profile-displayphoto-scale_200_200/B4EZ11FkVkJcAc-/0/1775785887709?e=2147483647&v=beta&t=o02HWrb0XcDfO56EwoHbWUJ9y_W0TVJHLb891etTExE";
 
-const executiveCards = [
+const DAYS = [
   {
-    title: 'Learn the Product and the Market',
-    text: "In the first 30 days, I will earn the right to sell by developing deep product fluency, understanding Cursor's enterprise motion, and learning how engineering teams inside pharma actually work.",
-    icon: BrainCircuit,
+    num: "30",
+    title: "Learn, Listen & Map the Terrain",
+    tagline: "Earn the right to sell",
+    color: ORANGE,
+    milestone: "Clear view of where momentum already exists across all named life sciences & biotech accounts",
+    sections: [
+      {
+        heading: "Product Fluency",
+        items: [
+          "Earn the right to sell by achieving deep product fluency. Learn to explain Cursor inside life sciences & biotech workflows: clinical data pipelines, bioinformatics, regulatory submission tools, and internal R&D platforms",
+          "Study Cursor's pricing model until I can explain seat tiers, consumption, and enterprise licensing in my sleep. Understand how deals have been structured at comparable life sciences accounts",
+        ],
+      },
+      {
+        heading: "Internal Alignment",
+        items: [
+          "Get tight with my Solutions Engineer, Customer Success, and SDR partners. Shadow calls. Understand the customer journey from first user to enterprise contract",
+          "Identify which channel and technology partners (consulting firms, SI partners, cloud resellers) already have relationships inside my target life sciences & biotech accounts",
+        ],
+      },
+      {
+        heading: "Account Planning",
+        items: [
+          "Research and build a tiered account plan for my named life sciences & biotech accounts including target contacts at the VP and Director level",
+          "Schedule at least one intro call or warm conversation for each target account before day 30",
+        ],
+      },
+    ],
   },
   {
-    title: 'Create Technical and Executive Engagement',
-    text: 'By day 60, I will be in active discovery with engineering leaders, identify existing Cursor users, map champions, and qualify opportunities using MEDDPICC.',
-    icon: Users,
+    num: "60",
+    title: "Get in Front of Builders & Start Qualifying",
+    tagline: "Map environments, find champions",
+    color: ORANGE,
+    milestone: "At least one active discovery underway per account, min 3 mapped stakeholders, rough deal size and timeline logged",
+    sections: [
+      {
+        heading: "Discovery Calls",
+        items: [
+          "Land discovery calls with at least one technical or engineering leader in each named account. Goal is to map their environment, not to pitch",
+          "What languages and frameworks are their teams using? Which internal platforms are most actively developed? Where are engineers spending time on repetitive, low-value code work?",
+        ],
+      },
+      {
+        heading: "Champion Identification",
+        items: [
+          "Identify Cursor users already active inside each account. These are my champions. Connect with them, understand their workflows, give them a path to internal advocacy",
+          "Apply MEDDPICC rigorously: map economic buyer, technical champion, decision criteria, and procurement process for each account",
+        ],
+      },
+      {
+        heading: "Deal Foundation",
+        items: [
+          "By day 60: at least one active discovery underway per account, minimum three mapped stakeholders, rough deal size and timeline, and all activity logged and forecasted",
+        ],
+      },
+    ],
   },
   {
-    title: 'Build Pipeline and Advance Enterprise Deals',
-    text: 'By day 90, I will focus energy on the highest-signal accounts, move one account toward a structured pilot or proof of value, and establish clear next steps across every named account.',
-    icon: Target,
+    num: "90",
+    title: "Build Pipeline & Drive Toward Enterprise Contracts",
+    tagline: "Convert signal into structured deals",
+    color: ORANGE,
+    milestone: "4x pipeline coverage of quota, 50%+ at Stage 2+, one pilot running or formally proposed",
+    sections: [
+      {
+        heading: "Pipeline Concentration",
+        items: [
+          "By day 90 I will have enough signal to know which accounts are ready to move. This is where I concentrate energy without abandoning the others",
+          "Push the most advanced account toward a structured pilot or proof of value. Lock in the SE, co-create success criteria with the champion, and define compliance and validation requirements upfront",
+        ],
+      },
+      {
+        heading: "Account Cadence",
+        items: [
+          "Maintain biweekly cadence with all other accounts. Bring something useful each time: relevant life sciences & biotech case study, workflow benchmark, or peer story from a comparable organization",
+          "Build executive alignment at the two most advanced accounts: connect developer productivity gains to business metrics - faster drug discovery cycles, reduced time to deployment, lower engineering cost per feature",
+        ],
+      },
+      {
+        heading: "Internal Leadership",
+        items: [
+          "Internally, build my reputation on the team. Contribute to deal reviews, share learnings from life sciences & biotech accounts, and establish myself as the go-to voice on life sciences enterprise selling",
+          "By day 90: 4x pipeline coverage of quota with at least 50% at Stage 2 or beyond, one pilot running or formally proposed, and clear documented next steps for every named account",
+        ],
+      },
+    ],
   },
-]
+];
 
-const landscapeCards = [
+const PIPELINE = [
   {
-    title: 'Massive, Expensive Engineering Teams',
-    icon: Building2,
-    bullets: [
-      'Top 20 pharmaceutical companies each employ 2,000 to 10,000+ software engineers',
-      'Developer time costs $150 to $250 per hour fully loaded',
-      'Any productivity gain compounds rapidly across large teams',
-      'R&D timelines are under intense pressure',
-      'Speed to code is speed to cure',
+    id: "outbound",
+    icon: "🎯",
+    title: "Direct Outbound",
+    subtitle: "Named account pursuit",
+    color: RED,
+    points: [
+      "Build a named life sciences & biotech account plan (ex. Eli Lilly, J&J, Pfizer, and Merck) focused on large engineering orgs with complex codebases and active digital transformation mandates",
+      'Map 6-8 personas per account and lead with a clear POV: "Your engineers are spending 40% of their time on work Cursor can accelerate and your competitors are already using it"',
+      "Run high-quality, targeted outreach sequences tied to triggers: new CTO hires, platform modernization announcements, R&D pipeline expansions, or developer conference activity",
+      "Anchor every outreach in business value: faster drug discovery cycles, reduced time from code to compliance, lower cost per feature, and not product features.",
+      "KPI discipline: daily outbound, weekly meeting targets, always driving toward a working session or workflow demonstration in the customer's own environment",
     ],
   },
   {
-    title: 'Regulated but Not Immune to Innovation',
-    icon: ShieldCheck,
-    bullets: [
-      'GxP, 21 CFR Part 11, SOX, and HIPAA create compliance overhead',
-      'Compliance is not a barrier to AI tooling when implemented correctly',
-      'Validation requirements create demand for accurate, well-documented code generation',
-      'IT leaders are under CTO mandate to modernize without compromising audit trails',
+    id: "plg",
+    icon: "⚡",
+    title: "Product-Led Signal",
+    subtitle: "Champion development",
+    color: ORANGE,
+    points: [
+      "Leverage Cursor's built-in PLG motion as an inbound pipeline signal: usage data shows which life sciences & biotech accounts already have active Cursor users before any enterprise conversation begins",
+      "Engage individual practitioners already using Cursor inside target accounts. These are my future champions. Validate their workflow wins, help them tell the story internally, give them proof points",
+      "Convert champion activity into structured pilots and enterprise scoping sessions. The champion's credibility with their engineering leadership is what opens the enterprise door",
+      "Position myself as a problem solver and trusted advisor to engineering leaders, not a rep running a quota play",
+      "Use real-world life sciences & biotech workflow use cases (bioinformatics pipeline debugging, clinical data tooling, regulatory documentation automation) to accelerate trust and shorten sales cycles significantly",
     ],
   },
   {
-    title: 'Fragmented, High-Volume Codebase Complexity',
-    icon: Layers3,
-    bullets: [
-      'Bioinformatics pipelines, clinical trial platforms, ERP integrations, and IoT stacks run in parallel',
-      'Legacy code debt is significant',
-      "Cursor's codebase awareness is suited for layered enterprise environments",
-      'Multi-cloud and on-prem hybrid setups create constant context-switching pain',
+    id: "customers",
+    icon: "🔄",
+    title: "Existing Customers",
+    subtitle: "Expand & champion network",
+    color: "#2d7f1d",
+    points: [
+      "Run structured account reviews at every existing life sciences & biotech customer to identify expansion signals: new engineering teams, new data platforms, new R&D initiatives that Cursor is not yet supporting",
+      "Drive land-and-expand plays across business units. One champion in bioinformatics should lead to conversations in clinical tech, regulatory affairs engineering, and manufacturing automation",
+      "Turn customers into internal advocates, case study contributors, and peer references within the life sciences & biotech industry. A Merck VP vouching for Cursor to a J&J peer is worth more than any pitch",
+      "Ask champions for warm peer introductions to create qualified pipeline across the sector",
+      "Partner closely with Customer Success to proactively identify expansion signals, health scores, and any risk of churn before it becomes a problem",
     ],
   },
-]
+  {
+    id: "events",
+    icon: "🎪",
+    title: "Marketing & Events",
+    subtitle: "Pipeline engines",
+    color: "#9333ea",
+    points: [
+      "Treat industry events as pipeline engines, not brand plays. Target key life sciences & biotech engineering forums: BioIT World, HIMSS Life Sciences, DPharm, and developer-focused tracks at major cloud conferences",
+      "Pre-book 8-12 meetings with named target contacts before every event. Warm outreach, not cold badge-scanning",
+      'Lead with a sharp hook: "How much of your engineering team\'s time is spent on work that an AI pair programmer could accelerate today?"',
+      "Focus on quality conversations with engineering leaders and senior developers, then convert within 48 hours to a next step (demo, workflow session, or pilot scoping call)",
+      "Supplement with small executive dinners (6-10 people) targeting CTOs and VP Engineering from top life sciences & biotech accounts to drive deeper relationships and peer learning",
+    ],
+  },
+  {
+    id: "partners",
+    icon: "🤝",
+    title: "Partners",
+    subtitle: "Reach inside top-tier life sciences & biotech",
+    color: "#0369a3",
+    points: [
+      "Focus on partners with reach inside top-tier life sciences & biotech: global SIs (Accenture, Deloitte, Cognizant), cloud hyperscalers (AWS, Azure with life sciences practices), and specialist life sciences consulting firms",
+      "Build joint account plans co-selling into active digital transformation and R&D modernization projects where Cursor can accelerate the engineering layer",
+      'Enable partners with a sharp message: "Cursor gives your life sciences & biotech clients a measurable productivity return in week one. There’s no rip-and-replace, no lengthy onboarding, and no compliance risk"',
+      "Hold partners accountable to pipeline creation, not just deal support. Define shared targets by account and review monthly",
+      "Prioritize partners already embedded in GxP-compliant environments. They bring access and credibility that cold outreach cannot replicate",
+    ],
+  },
+];
 
-const winCards = [
+const MARKET = [
   {
-    title: 'Proven Enterprise Scale',
-    icon: Gauge,
-    bullets: [
-      'Used by more than 50% of the Fortune 500',
-      'Used by 50,000+ businesses globally as of early 2026',
-      '$2B+ ARR by February 2026',
-      '$29.3B valuation',
-      'Deployed by companies such as Salesforce, NVIDIA, Adobe, and Uber',
+    heading: "Massive, Expensive Engineering Teams",
+    color: ORANGE,
+    points: [
+      "Top 20 life sciences & biotech companies each employ 2,000-10,000+ software engineers",
+      "Developer time costs $150-250/hour fully loaded; any productivity gain compounds rapidly",
+      "R&D timelines are under intense pressure. Speed to code is speed to cure",
     ],
   },
   {
-    title: 'Built for Complex Codebases',
-    icon: Code2,
-    bullets: [
-      'Cursor understands entire repositories, not just the open file',
-      "This matters for pharma's layered systems and legacy environments",
-      'Cursor edits code directly in context',
-      'Reduces copy-paste work and context switching',
+    heading: "Regulated but Not Immune to Innovation",
+    color: RED,
+    points: [
+      "GxP, 21 CFR Part 11, SOX, and HIPAA create compliance overhead, not a barrier to AI tooling",
+      "Validation requirements create demand for accurate, well-documented code generation",
+      "IT leaders are under CTO mandate to modernize without compromising audit trails",
     ],
   },
   {
-    title: 'Workflow-Native AI',
-    icon: Workflow,
-    bullets: [
-      'Composer is designed around real engineering workflows',
-      'Helps accelerate code generation, debugging, refactoring, documentation, and modernization',
-      'Fits the way engineering teams actually build software',
+    heading: "Fragmented, High-Volume Codebase Complexity",
+    color: "#0369a3",
+    points: [
+      "Bioinformatics pipelines, clinical trial platforms, ERP integrations, and IoT stacks run in parallel",
+      "Legacy code debt is enormous. Cursor's codebase-awareness is uniquely suited to this environment",
+      "Multi-cloud and on-prem hybrid setups create constant context-switching pain that Cursor eliminates",
     ],
   },
-  {
-    title: 'Champion-Driven Adoption',
-    icon: Handshake,
-    bullets: [
-      'Developers adopt Cursor individually',
-      'Champions validate value before IT procurement gets involved',
-      'Bottom-up adoption creates a natural land-and-expand motion',
-      'My job is to identify, support, and scale those champions',
-    ],
-  },
-]
+];
 
-const planTabs = [
+const WHY_CURSOR = [
   {
-    id: '30',
-    label: '30 Days',
-    title: 'Learn, Listen, and Map the Terrain',
-    objective:
-      'Earn the right to sell by achieving deep product fluency and understanding how Cursor creates value inside pharma engineering workflows.',
-    bullets: [
-      'Learn to explain Cursor inside pharma workflows, including clinical data pipelines, bioinformatics, regulatory submission tools, and internal R&D platforms',
-      'Study Cursor pricing, seat tiers, consumption, and enterprise licensing',
-      'Understand how comparable enterprise life sciences deals have been structured',
-      'Build strong internal alignment with Solutions Engineering, Customer Success, SDRs, and leadership',
-      'Shadow calls and understand the journey from individual developer adoption to enterprise contract',
-      'Identify channel and technology partners already embedded inside target pharma accounts',
-      'Build a tiered account plan for named accounts',
-      'Map VP, Director, engineering, platform, security, procurement, and developer stakeholders',
-      'Schedule at least one intro call or warm conversation for each target account before day 30',
-    ],
-    outcomes: [
-      'Product fluency established',
-      'Target account maps built',
-      'Internal operating rhythm established',
-      'Warm conversations started across named accounts',
+    heading: "Proven Enterprise Scale",
+    icon: "📈",
+    stats: "$2B+ ARR · $29.3B Valuation",
+    points: [
+      "Used by more than 50% of the Fortune 500 and 50,000+ businesses globally as of early 2026",
+      "Fastest ARR ramp in SaaS history",
+      "Salesforce, NVIDIA, Adobe, and Uber have deployed Cursor organization-wide",
     ],
   },
   {
-    id: '60',
-    label: '60 Days',
-    title: 'Get in Front of Builders and Start Qualifying',
-    objective:
-      'Land technical discovery, identify champions, and begin converting account research into qualified enterprise opportunities.',
-    discovery: [
-      'What languages and frameworks are your teams using most often?',
-      'Which internal platforms are most actively developed?',
-      'Where are engineers spending the most time on repetitive, low-value code work?',
-      'What does the developer experience look like today?',
-      'Where is the current developer workflow broken?',
-      'How do you evaluate AI coding tools in a regulated environment?',
-      'What would need to be true for Cursor to become an enterprise standard?',
-    ],
-    bullets: [
-      'Land discovery calls with at least one technical or engineering leader in each named account',
-      'Map the technical environment before pitching',
-      'Identify active Cursor users inside each account',
-      'Connect with practitioner champions and understand their workflows',
-      'Give champions a path to internal advocacy',
-      'Apply MEDDPICC rigorously',
-      'Map economic buyer, technical champion, decision criteria, decision process, paper process, pain, and competition',
-      'Build rough deal size and timeline for each active opportunity',
-      'Log and forecast all activity with discipline',
-    ],
-    outcomes: [
-      'At least one active discovery underway per account',
-      'Minimum three stakeholders mapped per account',
-      'Champions identified',
-      'Rough deal size and timeline created',
-      'MEDDPICC qualification started',
+    heading: "Purpose-Built for Complex Codebases",
+    icon: "⚙️",
+    stats: "4x Faster · Full Repo Context",
+    points: [
+      "Cursor understands entire repositories, not just the open file which is critical for layered life sciences & biotech systems",
+      "Edits code directly in-context; eliminates copy-paste and context switching across tools",
+      "Proprietary Composer model trained on real engineering workflows",
     ],
   },
   {
-    id: '90',
-    label: '90 Days',
-    title: 'Build Pipeline and Drive Toward Enterprise Contracts',
-    objective:
-      'Concentrate energy on highest-signal accounts and move the best opportunity toward a structured pilot or proof of value.',
-    bullets: [
-      'Identify which accounts are ready to move and which require continued nurturing',
-      'Push the most advanced account toward a structured pilot or proof of value',
-      'Lock in Solutions Engineering support',
-      'Co-create success criteria with the champion',
-      'Define compliance, security, and validation requirements upfront',
-      'Maintain biweekly cadence with all other accounts',
-      'Bring useful value to every touchpoint, including case studies, workflow benchmarks, and peer stories',
-      'Build executive alignment at the two most advanced accounts',
-      'Connect developer productivity gains to business metrics',
-      'Show impact on faster drug discovery cycles, reduced time to deployment, and lower engineering cost per feature',
-      'Contribute to internal deal reviews',
-      'Share life sciences learnings with the broader Cursor team',
-      'Establish myself as the go-to voice on life sciences enterprise selling',
-    ],
-    outcomes: [
-      '4x pipeline coverage of quota',
-      'At least 50% of pipeline at Stage 2 or beyond',
-      'One pilot running or formally proposed',
-      'Clear next steps documented for every named account',
-      'Executive alignment started in the two most advanced accounts',
+    heading: "Champion-Driven, Bottom-Up Adoption",
+    icon: "🚀",
+    stats: "36% Free-to-Paid · Industry Avg: 2-5%",
+    points: [
+      "Developers adopt Cursor individually, validate it, then advocate internally",
+      "36% free-to-paid conversion rate proves the product sells itself",
+      "PLG motion means Cursor already has users inside target life sciences & biotech accounts, my job is to find and scale them",
     ],
   },
-]
+];
 
-const motions = [
-  {
-    title: 'Direct Outbound',
-    icon: Compass,
-    bullets: [
-      'Build named account plans for named strategic pharma accounts ex. Eli Lilly, J&J, Pfizer, and Merck',
-      'Focus on large engineering organizations with complex codebases and active digital transformation mandates',
-      'Map six to eight personas per account',
-      'Target CTO, VP Engineering, Director of Platform, Head of Developer Experience, Security, Procurement, and practitioner champions',
-      'Lead with a clear POV: "Your engineers are spending meaningful time on work Cursor can accelerate, and your competitors are already exploring AI-native development."',
-      'Run high-quality targeted outreach tied to triggers',
-      'Triggers include new CTO hires, platform modernization announcements, R&D expansion, developer conference activity, cloud migration, AI strategy announcements, and hiring spikes',
-      'Anchor every message in business value, not product features',
-      "Drive toward a working session or workflow demonstration in the customer's own environment",
-    ],
-  },
-  {
-    title: 'Product-Led Signal and Champion Development',
-    icon: Activity,
-    bullets: [
-      "Use Cursor's PLG motion as an inbound pipeline signal",
-      'Identify accounts with existing Cursor users',
-      'Engage individual practitioners already using Cursor',
-      'Validate workflow wins',
-      'Help champions tell the story internally',
-      'Convert champion activity into pilots and enterprise scoping sessions',
-      'Use champion credibility to open the enterprise door',
-      'Position myself as a problem-solver and trusted advisor, not just a quota-carrying rep',
-      'Use real pharma workflow examples, including bioinformatics pipeline debugging, clinical data tooling, regulatory documentation automation, and legacy code modernization',
-    ],
-  },
-  {
-    title: 'Existing Customers and Champions',
-    icon: Users,
-    bullets: [
-      'Run structured account reviews at every existing customer',
-      'Identify expansion signals such as new engineering teams, new data platforms, and new R&D initiatives',
-      'Drive land-and-expand across business units',
-      'Use one champion in bioinformatics to create conversations in clinical tech, regulatory affairs engineering, and manufacturing automation',
-      'Turn customers into internal advocates, case study contributors, and peer references',
-      'Ask champions for warm peer introductions',
-      'Partner closely with Customer Success to identify expansion signals, health scores, and churn risk',
-    ],
-  },
-  {
-    title: 'Marketing and Industry Events',
-    icon: LineChart,
-    bullets: [
-      'Treat events as pipeline engines, not brand plays',
-      'Target BioIT World, HIMSS Life Sciences, DPharm, AWS and Azure life sciences events, and developer-focused cloud conference tracks',
-      'Pre-book eight to twelve meetings with named target contacts before every event',
-      'Avoid cold badge scanning',
-      'Lead with the hook: "How much of your engineering team\'s time is spent on work that an AI pair programmer could accelerate today?"',
-      'Convert quality conversations within 48 hours',
-      'Drive next steps into demos, workflow sessions, or pilot scoping calls',
-      'Supplement with small executive dinners for CTOs and VP Engineering leaders',
-    ],
-  },
-  {
-    title: 'Partners',
-    icon: Handshake,
-    bullets: [
-      'Focus on partners with reach inside top-tier pharma',
-      'Target global SIs such as Accenture, Deloitte, and Cognizant',
-      'Target cloud hyperscalers such as AWS and Azure with life sciences practices',
-      'Target specialist life sciences consulting firms',
-      'Build joint account plans around digital transformation and R&D modernization',
-      'Enable partners with the message: "Cursor gives pharma clients measurable productivity return quickly, with no rip-and-replace and minimal onboarding friction."',
-      'Hold partners accountable to pipeline creation, not just deal support',
-      'Define shared targets by account and review progress monthly',
-      'Prioritize partners already embedded in GxP-compliant environments',
-    ],
-  },
-]
-
-const metricCards = [
-  'Day 30: Account maps completed',
-  'Day 30: At least one warm intro or conversation per named account',
-  'Day 60: One active discovery per account',
-  'Day 60: Three or more stakeholders mapped per account',
-  'Day 60: Champions identified',
-  'Day 90: 4x pipeline coverage',
-  'Day 90: 50% of pipeline at Stage 2 or beyond',
-  'Day 90: One pilot running or formally proposed',
-]
-
-const funnelData = [
-  { name: 'Target Accounts', value: 8 },
-  { name: 'Active Conversations', value: 8 },
-  { name: 'Qualified Opportunities', value: 5 },
-  { name: 'Stage 2+', value: 3 },
-  { name: 'Pilot / POV', value: 1 },
-]
-
-const chartColors = ['#9b8cff', '#7ca7ff', '#91e2ff', '#c9c2ff', '#ffffff']
-
-function App() {
-  const [activeTab, setActiveTab] = useState('30')
-  const [expandedLandscape, setExpandedLandscape] = useState(0)
-  const [openMotion, setOpenMotion] = useState(0)
-  const currentPlan = useMemo(
-    () => planTabs.find((tab) => tab.id === activeTab),
-    [activeTab],
-  )
-
+function CursorLogo({ size = 32 }) {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#08090b] text-slate-100">
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(155,140,255,0.14),transparent_28%),radial-gradient(circle_at_80%_10%,rgba(124,167,255,0.11),transparent_30%)]" />
-      <Nav />
-      <div className="relative mx-auto max-w-7xl px-5 pb-24 pt-28 sm:px-8 lg:px-10">
-        <Hero />
-        <Section id="executive-summary" eyebrow="Section 01" title="Executive Summary" icon={Sparkles}>
-          <div className="grid gap-5 md:grid-cols-3">
-            {executiveCards.map((card, index) => (
-              <PremiumCard key={card.title} delay={index * 0.08}>
-                <IconPill icon={card.icon} />
-                <h3 className="mt-6 text-xl font-semibold tracking-tight text-white">{card.title}</h3>
-                <p className="mt-4 text-sm leading-6 text-slate-300">{card.text}</p>
-              </PremiumCard>
-            ))}
-          </div>
-        </Section>
-
-        <Section id="pharma-landscape" eyebrow="Section 02" title="Pharma Engineering Landscape" icon={FlaskConical}>
-          <div className="grid gap-5 lg:grid-cols-3">
-            {landscapeCards.map((card, index) => (
-              <ExpandableCard
-                key={card.title}
-                card={card}
-                isOpen={expandedLandscape === index}
-                onToggle={() => setExpandedLandscape(expandedLandscape === index ? -1 : index)}
-              />
-            ))}
-          </div>
-        </Section>
-
-        <Section id="why-cursor-wins" eyebrow="Section 03" title="Why Cursor Wins in Pharma" icon={Code2}>
-          <div className="grid gap-5 md:grid-cols-2">
-            {winCards.map((card, index) => (
-              <PremiumCard key={card.title} delay={index * 0.06}>
-                <div className="flex items-center gap-4">
-                  <IconPill icon={card.icon} />
-                  <h3 className="text-xl font-semibold tracking-tight text-white">{card.title}</h3>
-                </div>
-                <BulletList items={card.bullets} className="mt-6" />
-              </PremiumCard>
-            ))}
-          </div>
-        </Section>
-
-        <Section id="execution-plan" eyebrow="Section 04" title="30-60-90 Day Plan" icon={Target}>
-          <div className="rounded-[2rem] border border-white/10 bg-[#111319]/80 p-3 shadow-2xl shadow-black/30 backdrop-blur">
-            <div className="grid gap-2 rounded-[1.5rem] border border-white/8 bg-black/20 p-2 sm:grid-cols-3">
-              {planTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`relative rounded-2xl px-5 py-4 text-sm font-medium transition ${
-                    activeTab === tab.id ? 'text-white' : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  {activeTab === tab.id && (
-                    <motion.span
-                      layoutId="active-tab"
-                      className="absolute inset-0 rounded-2xl border border-purple-300/20 bg-purple-400/10"
-                    />
-                  )}
-                  <span className="relative">{tab.label}</span>
-                </button>
-              ))}
-            </div>
-            <motion.div
-              key={currentPlan.id}
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.28 }}
-              className="grid gap-8 p-5 lg:grid-cols-[1.15fr_0.85fr] lg:p-8"
-            >
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-blue-200">
-                  {currentPlan.label}
-                </p>
-                <h3 className="mt-3 text-3xl font-semibold tracking-tight text-white">{currentPlan.title}</h3>
-                <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-purple-200">Objective</p>
-                  <p className="mt-3 leading-7 text-slate-300">{currentPlan.objective}</p>
-                </div>
-                {currentPlan.discovery && (
-                  <div className="mt-5 rounded-2xl border border-blue-300/15 bg-blue-400/[0.05] p-5">
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-blue-200">
-                      Discovery Questions
-                    </p>
-                    <BulletList items={currentPlan.discovery} className="mt-4" />
-                  </div>
-                )}
-                <BulletList items={currentPlan.bullets} className="mt-6 columns-1 gap-8 xl:columns-2" />
-              </div>
-              <div className="rounded-[1.6rem] border border-white/10 bg-black/25 p-6">
-                <div className="flex items-center gap-3">
-                  <div className="rounded-full bg-white/8 p-2 text-purple-200">
-                    <Check size={18} />
-                  </div>
-                  <h4 className="font-semibold text-white">{currentPlan.label} Outcomes</h4>
-                </div>
-                <div className="mt-6 space-y-3">
-                  {currentPlan.outcomes.map((outcome, index) => (
-                    <motion.div
-                      key={outcome}
-                      initial={{ opacity: 0, x: 10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.04 }}
-                      className="rounded-2xl border border-white/8 bg-white/[0.035] p-4 text-sm leading-6 text-slate-200"
-                    >
-                      {outcome}
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </Section>
-
-        <Section id="pipeline-growth" eyebrow="Section 05" title="Pipeline Growth Strategy" icon={Rocket}>
-          <div className="space-y-4">
-            {motions.map((motionItem, index) => (
-              <AccordionItem
-                key={motionItem.title}
-                item={motionItem}
-                index={index}
-                isOpen={openMotion === index}
-                onToggle={() => setOpenMotion(openMotion === index ? -1 : index)}
-              />
-            ))}
-          </div>
-        </Section>
-
-        <Section id="success-metrics" eyebrow="Section 06" title="Success Metrics" icon={BarChart3}>
-          <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="grid gap-4 sm:grid-cols-2">
-              {metricCards.map((metric, index) => (
-                <motion.div
-                  key={metric}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-80px' }}
-                  transition={{ delay: index * 0.03 }}
-                  className="group rounded-2xl border border-white/10 bg-[#111319]/80 p-4 transition hover:border-purple-300/30 hover:bg-[#151823]"
-                >
-                  <div className="flex items-start gap-3">
-                    <CircleDot className="mt-0.5 text-purple-200" size={16} />
-                    <p className="text-sm leading-6 text-slate-200">{metric}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-            <PremiumCard className="min-h-[430px]">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.28em] text-blue-200">
-                    Sample Funnel
-                  </p>
-                  <h3 className="mt-2 text-2xl font-semibold tracking-tight text-white">Pipeline Progression</h3>
-                </div>
-                <div className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-300">
-                  Day 90 target state
-                </div>
-              </div>
-              <div className="mt-8 h-[310px]">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={funnelData} layout="vertical" margin={{ left: 18, right: 28, top: 8, bottom: 8 }}>
-                    <CartesianGrid stroke="rgba(255,255,255,0.06)" horizontal={false} />
-                    <XAxis type="number" hide domain={[0, 8]} />
-                    <YAxis
-                      type="category"
-                      dataKey="name"
-                      width={148}
-                      tick={{ fill: '#cbd5e1', fontSize: 12 }}
-                      axisLine={false}
-                      tickLine={false}
-                    />
-                    <Tooltip
-                      cursor={{ fill: 'rgba(155,140,255,0.08)' }}
-                      contentStyle={{
-                        background: '#111319',
-                        border: '1px solid rgba(255,255,255,0.12)',
-                        borderRadius: '14px',
-                        color: '#fff',
-                      }}
-                    />
-                    <Bar dataKey="value" radius={[0, 12, 12, 0]} barSize={28}>
-                      {funnelData.map((entry, index) => (
-                        <Cell key={entry.name} fill={chartColors[index]} />
-                      ))}
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </PremiumCard>
-          </div>
-        </Section>
-
-        <ClosingSection />
-      </div>
-    </main>
-  )
-}
-
-function Nav() {
-  return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#08090b]/78 backdrop-blur-xl">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
-        <a href="#top" className="flex items-center gap-3">
-          <div className="grid h-9 w-9 place-items-center rounded-xl border border-white/12 bg-white/[0.06]">
-            <LockKeyhole size={17} className="text-purple-200" />
-          </div>
-          <div className="hidden sm:block">
-            <p className="text-sm font-semibold text-white">Cursor Sales OS</p>
-            <p className="text-xs text-slate-500">Life Sciences Command Center</p>
-          </div>
-        </a>
-        <div className="hidden items-center gap-1 lg:flex">
-          {navItems.map(([label, id]) => (
-            <a
-              key={id}
-              href={`#${id}`}
-              className="rounded-full px-3 py-2 text-xs font-medium text-slate-400 transition hover:bg-white/[0.06] hover:text-white"
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-        <a
-          href="#execution-plan"
-          className="group inline-flex items-center gap-2 rounded-full border border-purple-200/20 bg-purple-300/10 px-4 py-2 text-sm font-medium text-purple-100 transition hover:border-purple-200/40 hover:bg-purple-300/15"
-        >
-          View Plan
-          <ArrowUpRight size={15} className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-        </a>
-      </nav>
-    </header>
-  )
-}
-
-function Hero() {
-  return (
-    <section id="top" className="relative grid min-h-[calc(100vh-7rem)] items-center py-16">
-      <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-        <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-slate-300">
-            <span className="h-2 w-2 rounded-full bg-purple-300 shadow-[0_0_18px_rgba(196,181,253,0.9)]" />
-            Strategic enterprise sales role for life sciences and pharma
-          </div>
-          <h1 className="mt-8 max-w-4xl text-5xl font-semibold tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl">
-            David Gutshall | Cursor Enterprise Sales Operating System
-          </h1>
-          <div className="mt-8 grid gap-3 text-sm font-medium text-slate-300 sm:grid-cols-2">
-            <div className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3">
-              Prepared for John Vaugh, VP Enterprise Sales
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/[0.035] px-4 py-3">
-              Presentation: David Gutshall
-            </div>
-          </div>
-          <p className="mt-8 max-w-3xl text-lg leading-8 text-slate-300">
-            This plan outlines how I would quickly build product fluency, map strategic life sciences accounts,
-            identify active Cursor champions, create qualified pipeline, and convert bottom-up developer adoption
-            into enterprise expansion.
-          </p>
-        </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.55, delay: 0.1 }}
-          className="rounded-[2rem] border border-white/10 bg-[#111319]/80 p-5 shadow-2xl shadow-black/40"
-        >
-          <div className="rounded-[1.5rem] border border-white/8 bg-black/25 p-5">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-purple-200">Operating Model</p>
-                <h2 className="mt-2 text-2xl font-semibold text-white">Command Center</h2>
-              </div>
-              <div className="rounded-full border border-blue-200/20 bg-blue-300/10 px-3 py-1 text-xs text-blue-100">
-                Day 0 to 90
-              </div>
-            </div>
-            <div className="mt-7 space-y-4">
-              {['Product fluency', 'Account intelligence', 'Champion activation', 'Enterprise expansion'].map(
-                (step, index) => (
-                  <div key={step} className="flex items-center gap-4">
-                    <div className="grid h-8 w-8 place-items-center rounded-full bg-white/8 text-xs text-white">
-                      {index + 1}
-                    </div>
-                    <div className="h-2 flex-1 overflow-hidden rounded-full bg-white/8">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${92 - index * 13}%` }}
-                        transition={{ duration: 0.8, delay: 0.25 + index * 0.08 }}
-                        className="h-full rounded-full bg-purple-300"
-                      />
-                    </div>
-                    <span className="w-36 text-sm text-slate-300">{step}</span>
-                  </div>
-                ),
-              )}
-            </div>
-          </div>
-          <div className="mt-4 grid gap-4">
-            {kpis.map((kpi, index) => (
-              <motion.div
-                key={kpi.label}
-                initial={{ opacity: 0, x: 18 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.25 + index * 0.08 }}
-                className="group rounded-2xl border border-white/10 bg-white/[0.035] p-4 transition hover:border-purple-300/30 hover:bg-white/[0.055]"
-              >
-                <div className="flex items-center gap-4">
-                  <IconPill icon={kpi.icon} small />
-                  <div>
-                    <p className="text-3xl font-semibold tracking-tight text-white">{kpi.value}</p>
-                    <p className="mt-1 text-sm text-slate-300">{kpi.label}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-function Section({ id, eyebrow, title, icon: Icon, children }) {
-  return (
-    <section id={id} className="scroll-mt-28 py-16 sm:py-20">
-      <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
-        <div>
-          <div className="flex items-center gap-3">
-            <div className="rounded-xl border border-white/10 bg-white/[0.05] p-2 text-purple-200">
-              <Icon size={18} />
-            </div>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-slate-500">{eyebrow}</p>
-          </div>
-          <h2 className="mt-4 text-3xl font-semibold tracking-[-0.035em] text-white sm:text-5xl">{title}</h2>
-        </div>
-      </div>
-      {children}
-    </section>
-  )
-}
-
-function PremiumCard({ children, className = '', delay = 0 }) {
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.35, delay }}
-      className={`group rounded-[1.6rem] border border-white/10 bg-[#111319]/80 p-6 shadow-xl shadow-black/20 transition duration-300 hover:-translate-y-1 hover:border-purple-300/30 hover:bg-[#151823] ${className}`}
-    >
-      {children}
-    </motion.article>
-  )
-}
-
-function ExpandableCard({ card, isOpen, onToggle }) {
-  const Icon = card.icon
-  return (
-    <motion.article
-      layout
-      className="rounded-[1.6rem] border border-white/10 bg-[#111319]/80 p-5 transition hover:border-blue-300/30"
-    >
-      <button onClick={onToggle} className="flex w-full items-start justify-between gap-4 text-left">
-        <div>
-          <IconPill icon={Icon} />
-          <h3 className="mt-5 text-xl font-semibold tracking-tight text-white">{card.title}</h3>
-        </div>
-        <ChevronDown
-          size={20}
-          className={`mt-2 text-slate-400 transition ${isOpen ? 'rotate-180 text-purple-200' : ''}`}
-        />
-      </button>
-      <motion.div
-        initial={false}
-        animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
-        className="overflow-hidden"
+    <svg width={size * 4.2} height={size} viewBox="0 0 134 32" fill="none" aria-label="Cursor">
+      <polygon points="14,2 26,9 14,16 2,9" fill="#E85D26" />
+      <polygon points="26,9 26,23 14,30 14,16" fill="#C44B1E" />
+      <polygon points="14,16 14,30 2,23 2,9" fill="#F0784A" />
+      <text
+        x="36"
+        y="23"
+        fontFamily="Arial, sans-serif"
+        fontWeight="600"
+        fontSize="20"
+        fill="#1A1714"
+        letterSpacing="-0.3"
       >
-        <BulletList items={card.bullets} className="mt-6" />
-      </motion.div>
-    </motion.article>
-  )
+        Cursor
+      </text>
+    </svg>
+  );
 }
 
-function AccordionItem({ item, index, isOpen, onToggle }) {
-  const Icon = item.icon
-  return (
-    <motion.article
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ delay: index * 0.04 }}
-      className="overflow-hidden rounded-[1.35rem] border border-white/10 bg-[#111319]/80"
-    >
-      <button
-        onClick={onToggle}
-        className="flex w-full items-center justify-between gap-4 p-5 text-left transition hover:bg-white/[0.035]"
-      >
-        <div className="flex items-center gap-4">
-          <IconPill icon={Icon} small />
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
-              Motion {index + 1}
-            </p>
-            <h3 className="mt-1 text-lg font-semibold text-white">{item.title}</h3>
-          </div>
-        </div>
-        <ChevronDown className={`text-slate-400 transition ${isOpen ? 'rotate-180 text-purple-200' : ''}`} />
-      </button>
-      <motion.div
-        initial={false}
-        animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
-        className="overflow-hidden"
-      >
-        <div className="border-t border-white/10 px-5 pb-6 pt-5">
-          <BulletList items={item.bullets} className="columns-1 gap-8 md:columns-2" />
-        </div>
-      </motion.div>
-    </motion.article>
-  )
-}
+const NAV_ITEMS = [
+  { id: "overview", label: "Overview" },
+  { id: "market", label: "Market" },
+  { id: "why-cursor", label: "Why Cursor" },
+  { id: "90-day", label: "30.60.90" },
+  { id: "pipeline", label: "Pipeline" },
+];
 
-function BulletList({ items, className = '' }) {
+const styles = {
+  app: {
+    fontFamily:
+      "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+    background: "linear-gradient(180deg, #FBFAF8 0%, #F7F3EE 45%, #FBFAF8 100%)",
+    minHeight: "100vh",
+    color: "#171412",
+  },
+  header: {
+    background: "rgba(251, 250, 248, 0.88)",
+    borderBottom: "1px solid rgba(26, 23, 20, 0.08)",
+    backdropFilter: "blur(18px)",
+    position: "sticky",
+    top: 0,
+    zIndex: 100,
+    padding: "0 clamp(20px, 4vw, 56px)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    minHeight: 76,
+    gap: 24,
+  },
+  headerRight: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+    fontSize: 11,
+    color: "#7C7168",
+    letterSpacing: "0.12em",
+    textTransform: "uppercase",
+    whiteSpace: "nowrap",
+  },
+  nav: {
+    display: "flex",
+    gap: 6,
+    alignItems: "center",
+    background: "rgba(255, 255, 255, 0.72)",
+    border: "1px solid rgba(26, 23, 20, 0.08)",
+    borderRadius: 999,
+    padding: 5,
+    boxShadow: "0 10px 30px rgba(26, 23, 20, 0.05)",
+  },
+  navBtn: (active) => ({
+    padding: "9px 14px",
+    borderRadius: 999,
+    border: "none",
+    cursor: "pointer",
+    fontSize: 12,
+    fontWeight: 700,
+    background: active ? DARK : "transparent",
+    color: active ? WHITE : "#6F645C",
+    transition: "background 0.2s, color 0.2s, transform 0.2s",
+    letterSpacing: "0.01em",
+  }),
+  hero: {
+    background:
+      "radial-gradient(circle at 82% 18%, rgba(232, 93, 38, 0.18), transparent 32%), linear-gradient(135deg, #171412 0%, #29211C 58%, #3A2A22 100%)",
+    color: WHITE,
+    padding: "clamp(72px, 9vw, 128px) clamp(20px, 4vw, 56px)",
+    position: "relative",
+    overflow: "hidden",
+  },
+  heroInner: {
+    position: "relative",
+    maxWidth: 1180,
+    margin: "0 auto",
+    display: "grid",
+    gridTemplateColumns: "minmax(0, 1.1fr) minmax(320px, 0.72fr)",
+    gap: "clamp(32px, 6vw, 72px)",
+    alignItems: "center",
+  },
+  heroCopy: {
+    maxWidth: 720,
+  },
+  heroTitleLockup: {
+    display: "flex",
+    alignItems: "flex-end",
+    gap: 24,
+    marginBottom: 24,
+  },
+  heroTag: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    background: "rgba(255, 255, 255, 0.1)",
+    color: "#FFD7C7",
+    fontSize: 11,
+    fontWeight: 800,
+    letterSpacing: "0.14em",
+    padding: "8px 12px",
+    borderRadius: 999,
+    marginBottom: 24,
+    textTransform: "uppercase",
+    border: "1px solid rgba(255, 255, 255, 0.14)",
+  },
+  heroTitle: {
+    fontSize: "clamp(44px, 7vw, 88px)",
+    fontWeight: 800,
+    lineHeight: 0.96,
+    letterSpacing: "-0.07em",
+    margin: 0,
+    maxWidth: 760,
+  },
+  headshotCard: {
+    background: "rgba(255, 255, 255, 0.1)",
+    border: "1px solid rgba(255, 255, 255, 0.16)",
+    borderRadius: 24,
+    padding: 10,
+    boxShadow: "0 24px 60px rgba(0, 0, 0, 0.28)",
+    flex: "0 0 auto",
+  },
+  headshotImage: {
+    width: 132,
+    height: 132,
+    borderRadius: 18,
+    display: "block",
+    objectFit: "cover",
+    border: "1px solid rgba(255, 255, 255, 0.22)",
+  },
+  heroSub: {
+    fontSize: "clamp(17px, 1.8vw, 21px)",
+    color: "#D7CFC8",
+    marginBottom: 34,
+    maxWidth: 650,
+    lineHeight: 1.65,
+  },
+  heroBadges: {
+    display: "grid",
+    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    gap: 12,
+  },
+  heroBadge: {
+    background: "rgba(255, 255, 255, 0.08)",
+    border: "1px solid rgba(255, 255, 255, 0.12)",
+    borderRadius: 16,
+    padding: "16px 18px",
+    fontSize: 13,
+    color: "#F7F3EE",
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.08)",
+  },
+  heroBadgeLabel: {
+    color: "#FFB494",
+    fontWeight: 800,
+    display: "block",
+    fontSize: 10,
+    letterSpacing: "0.14em",
+    textTransform: "uppercase",
+    marginBottom: 4,
+  },
+  heroPanel: {
+    background: "rgba(255, 255, 255, 0.94)",
+    color: DARK,
+    border: "1px solid rgba(255, 255, 255, 0.5)",
+    borderRadius: 28,
+    padding: 28,
+    boxShadow: "0 28px 80px rgba(0, 0, 0, 0.28)",
+  },
+  heroPanelLabel: {
+    color: ORANGE,
+    fontSize: 11,
+    fontWeight: 800,
+    letterSpacing: "0.14em",
+    textTransform: "uppercase",
+    marginBottom: 10,
+  },
+  heroPanelTitle: {
+    fontSize: 28,
+    fontWeight: 800,
+    letterSpacing: "-0.04em",
+    lineHeight: 1.05,
+    marginBottom: 18,
+  },
+  heroMetricGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+    gap: 12,
+    marginTop: 22,
+  },
+  heroMetric: {
+    background: "#F8F5F1",
+    border: "1px solid #EEE6DE",
+    borderRadius: 18,
+    padding: 16,
+  },
+  heroMetricValue: {
+    fontSize: 24,
+    fontWeight: 850,
+    letterSpacing: "-0.04em",
+    color: DARK,
+  },
+  heroMetricLabel: {
+    fontSize: 12,
+    lineHeight: 1.45,
+    color: "#766B62",
+    marginTop: 4,
+  },
+  section: {
+    padding: "clamp(72px, 9vw, 112px) clamp(20px, 4vw, 56px)",
+    maxWidth: 1180,
+    margin: "0 auto",
+  },
+  sectionLabel: {
+    fontSize: 11,
+    fontWeight: 850,
+    letterSpacing: "0.15em",
+    textTransform: "uppercase",
+    color: ORANGE,
+    marginBottom: 12,
+  },
+  sectionTitle: {
+    fontSize: "clamp(32px, 4vw, 52px)",
+    fontWeight: 850,
+    lineHeight: 1.03,
+    letterSpacing: "-0.055em",
+    marginBottom: 34,
+    color: DARK,
+    maxWidth: 760,
+  },
+  marketGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gap: 18,
+  },
+  marketCard: (color) => ({
+    background: WHITE,
+    borderRadius: 24,
+    padding: 28,
+    border: "1px solid rgba(26, 23, 20, 0.08)",
+    boxShadow: "0 18px 48px rgba(26, 23, 20, 0.06)",
+    position: "relative",
+    overflow: "hidden",
+    outline: `1px solid ${color}10`,
+  }),
+  marketHeading: (color) => ({
+    fontSize: 18,
+    fontWeight: 800,
+    color: DARK,
+    marginBottom: 18,
+    letterSpacing: "-0.02em",
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+    "--dot": color,
+  }),
+  whyGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+    gap: 18,
+  },
+  whyCard: {
+    background: "linear-gradient(145deg, #FFFFFF 0%, #F8F5F1 100%)",
+    border: "1px solid rgba(26, 23, 20, 0.08)",
+    borderRadius: 24,
+    padding: 28,
+    color: DARK,
+    boxShadow: "0 20px 54px rgba(26, 23, 20, 0.07)",
+  },
+  whyIcon: {
+    width: 48,
+    height: 48,
+    borderRadius: 16,
+    background: "#FFF1EA",
+    color: ORANGE,
+    fontSize: 24,
+    marginBottom: 18,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  whyStat: {
+    background: "#FFF1EA",
+    color: ORANGE,
+    fontSize: 12,
+    fontWeight: 850,
+    padding: "7px 11px",
+    borderRadius: 999,
+    display: "inline-block",
+    marginBottom: 16,
+    letterSpacing: "0.02em",
+  },
+  dayNav: {
+    display: "flex",
+    gap: 8,
+    marginBottom: 26,
+    borderRadius: 999,
+    padding: 6,
+    background: WHITE,
+    border: "1px solid rgba(26, 23, 20, 0.08)",
+    width: "fit-content",
+    boxShadow: "0 14px 36px rgba(26, 23, 20, 0.06)",
+  },
+  dayNavBtn: (active) => ({
+    padding: "10px 18px 10px 10px",
+    border: "none",
+    borderRadius: 999,
+    cursor: "pointer",
+    fontSize: 15,
+    fontWeight: 800,
+    background: active ? DARK : WHITE,
+    color: active ? WHITE : DARK,
+    transition: "all 0.2s ease",
+    display: "flex",
+    alignItems: "center",
+    gap: 10,
+  }),
+  dayNumBadge: (active) => ({
+    width: 38,
+    height: 38,
+    borderRadius: "50%",
+    background: active ? ORANGE : "#F1ECE6",
+    color: active ? WHITE : "#6F645C",
+    fontSize: 15,
+    fontWeight: 850,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    transition: "all 0.2s",
+  }),
+  dayCard: {
+    background: WHITE,
+    borderRadius: 28,
+    overflow: "hidden",
+    border: "1px solid rgba(26, 23, 20, 0.08)",
+    boxShadow: "0 24px 70px rgba(26, 23, 20, 0.08)",
+  },
+  dayHeader: {
+    background: "linear-gradient(135deg, #171412 0%, #32261F 100%)",
+    padding: "34px clamp(24px, 4vw, 44px)",
+    display: "flex",
+    alignItems: "flex-end",
+    gap: 24,
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+  },
+  dayBigNum: {
+    fontSize: "clamp(64px, 8vw, 104px)",
+    fontWeight: 900,
+    color: ORANGE,
+    lineHeight: 1,
+    letterSpacing: "-0.08em",
+  },
+  dayLabel: {
+    fontSize: 12,
+    color: "#BDB2AA",
+    textTransform: "uppercase",
+    letterSpacing: "0.12em",
+    fontWeight: 850,
+  },
+  dayTitle: {
+    fontSize: "clamp(24px, 3vw, 34px)",
+    fontWeight: 850,
+    color: WHITE,
+    marginBottom: 6,
+    maxWidth: 500,
+    letterSpacing: "-0.04em",
+    lineHeight: 1.08,
+  },
+  dayTagline: {
+    fontSize: 14,
+    color: "#FFB494",
+    fontWeight: 700,
+  },
+  dayBody: {
+    padding: "clamp(24px, 4vw, 44px)",
+  },
+  sectionGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+    gap: 16,
+    marginBottom: 32,
+  },
+  sectionBox: {
+    background: "#FBF8F4",
+    border: "1px solid #EFE7DF",
+    borderRadius: 20,
+    padding: 22,
+  },
+  sectionBoxHead: {
+    fontSize: 12,
+    fontWeight: 850,
+    color: ORANGE,
+    textTransform: "uppercase",
+    letterSpacing: "0.1em",
+    marginBottom: 14,
+  },
+  bulletItem: {
+    display: "flex",
+    gap: 12,
+    marginBottom: 12,
+    fontSize: 14,
+    lineHeight: 1.62,
+    color: "#645A52",
+  },
+  bulletDot: {
+    width: 7,
+    height: 7,
+    borderRadius: "50%",
+    background: ORANGE,
+    marginTop: 8,
+    flexShrink: 0,
+    boxShadow: "0 0 0 4px rgba(232, 93, 38, 0.1)",
+  },
+  milestone: {
+    background: "#171412",
+    borderRadius: 20,
+    padding: "20px 22px",
+    display: "flex",
+    gap: 12,
+    alignItems: "flex-start",
+    boxShadow: "0 16px 36px rgba(26, 23, 20, 0.18)",
+  },
+  milestoneIcon: {
+    fontSize: 20,
+    flexShrink: 0,
+    marginTop: 2,
+  },
+  milestoneText: {
+    fontSize: 14,
+    color: "#EEE7DF",
+    lineHeight: 1.6,
+  },
+  milestoneLabel: {
+    fontSize: 11,
+    fontWeight: 850,
+    color: "#FFB494",
+    textTransform: "uppercase",
+    letterSpacing: "0.1em",
+    marginBottom: 4,
+    display: "block",
+  },
+  pipelineGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+    gap: 18,
+  },
+  pipelineCard: (color) => ({
+    background: WHITE,
+    borderRadius: 24,
+    overflow: "hidden",
+    boxShadow: "0 18px 48px rgba(26, 23, 20, 0.06)",
+    border: "1px solid rgba(26, 23, 20, 0.08)",
+    cursor: "pointer",
+    transition: "transform 0.18s, box-shadow 0.18s",
+    outline: `1px solid ${color}10`,
+  }),
+  pipelineHeader: (color) => ({
+    padding: "22px 24px 18px",
+    borderBottom: "1px solid #F0E9E1",
+    display: "flex",
+    alignItems: "center",
+    gap: 14,
+  }),
+  pipelineIconBg: (color) => ({
+    width: 48,
+    height: 48,
+    borderRadius: 16,
+    background: `${color}18`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontSize: 22,
+    flexShrink: 0,
+  }),
+  pipelineTitle: {
+    fontSize: 17,
+    fontWeight: 850,
+    color: DARK,
+    marginBottom: 2,
+    letterSpacing: "-0.02em",
+  },
+  pipelineSub: {
+    fontSize: 12,
+    color: "#7C7168",
+    letterSpacing: "0.03em",
+  },
+  pipelineBody: {
+    padding: "18px 24px 24px",
+  },
+  footer: {
+    background: "#FBFAF8",
+    borderTop: "1px solid rgba(26, 23, 20, 0.08)",
+    padding: "30px clamp(20px, 4vw, 56px)",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexWrap: "wrap",
+    gap: 16,
+  },
+  footerText: {
+    fontSize: 12,
+    color: "#7C7168",
+  },
+};
+
+function BulletList({ items, dotColor = ORANGE }) {
   return (
-    <ul className={`space-y-3 ${className}`}>
-      {items.map((item) => (
-        <li key={item} className="break-inside-avoid text-sm leading-6 text-slate-300">
-          <span className="mr-3 inline-flex h-5 w-5 translate-y-1 items-center justify-center rounded-full bg-purple-300/10 text-purple-200">
-            <Check size={12} />
-          </span>
-          {item}
+    <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
+      {items.map((item, i) => (
+        <li key={i} style={styles.bulletItem}>
+          <span
+            style={{
+              ...styles.bulletDot,
+              background: dotColor,
+            }}
+          />
+          <span>{item}</span>
         </li>
       ))}
     </ul>
-  )
+  );
 }
 
-function IconPill({ icon: Icon, small = false }) {
+function MarketSection() {
   return (
-    <div
-      className={`grid place-items-center rounded-2xl border border-white/10 bg-white/[0.06] text-purple-200 shadow-lg shadow-purple-950/20 ${
-        small ? 'h-10 w-10' : 'h-12 w-12'
-      }`}
-    >
-      <Icon size={small ? 18 : 21} />
-    </div>
-  )
-}
-
-function ClosingSection() {
-  return (
-    <section className="py-16">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[#111319]/90 p-8 shadow-2xl shadow-black/30 sm:p-10 lg:p-12"
-      >
-        <div className="absolute right-0 top-0 h-64 w-64 rounded-full bg-purple-400/10 blur-3xl" />
-        <div className="relative max-w-4xl">
-          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-purple-200">Closing Thesis</p>
-          <h2 className="mt-4 text-4xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">How I Will Win</h2>
-          <p className="mt-6 text-lg leading-8 text-slate-300">
-            "I will win this role the same way I have built territories before: by learning the product deeply,
-            understanding the customer's world, building trust with technical champions, applying disciplined
-            enterprise qualification, and creating urgency around measurable business outcomes. In life sciences,
-            Cursor is not just a productivity tool. It is a way to help engineering teams move faster, reduce
-            friction, and support the innovation engine behind better patient outcomes."
-          </p>
-          <a
-            href="#execution-plan"
-            className="mt-8 inline-flex items-center gap-3 rounded-full border border-purple-200/25 bg-purple-300/12 px-6 py-3 text-sm font-semibold text-purple-50 transition hover:-translate-y-0.5 hover:border-purple-200/45 hover:bg-purple-300/18"
-          >
-            View 90-Day Execution Plan
-            <ArrowUpRight size={17} />
-          </a>
+    <div style={{ background: "transparent" }}>
+      <div className="app-section" style={styles.section}>
+        <div style={styles.sectionLabel}>CONTEXT</div>
+        <div className="section-title" style={styles.sectionTitle}>The Life Sciences & Biotech Engineering Landscape Today</div>
+        <div className="card-grid" style={styles.marketGrid}>
+          {MARKET.map((m) => (
+            <div className="modern-card" key={m.heading} style={styles.marketCard(m.color)}>
+              <div style={styles.marketHeading(m.color)}>
+                <span
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: 999,
+                    background: m.color,
+                    boxShadow: `0 0 0 6px ${m.color}14`,
+                    flexShrink: 0,
+                  }}
+                />
+                {m.heading}
+              </div>
+              <BulletList items={m.points} dotColor={m.color} />
+            </div>
+          ))}
         </div>
-      </motion.div>
-    </section>
-  )
+      </div>
+    </div>
+  );
 }
 
-export default App
+function WhyCursorSection() {
+  return (
+    <div style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.72), rgba(247,243,238,0.45))" }}>
+      <div className="app-section" style={styles.section}>
+        <div style={styles.sectionLabel}>THE OPPORTUNITY</div>
+        <div className="section-title" style={styles.sectionTitle}>Why Cursor is Positioned to Win in Life Sciences & Biotech</div>
+        <div className="card-grid" style={styles.whyGrid}>
+          {WHY_CURSOR.map((w) => (
+            <div className="modern-card" key={w.heading} style={styles.whyCard}>
+              <span style={styles.whyIcon}>{w.icon}</span>
+              <div
+                style={{
+                  fontSize: 20,
+                  fontWeight: 850,
+                  color: DARK,
+                  marginBottom: 10,
+                  lineHeight: 1.18,
+                  letterSpacing: "-0.03em",
+                }}
+              >
+                {w.heading}
+              </div>
+              <span style={styles.whyStat}>{w.stats}</span>
+              <BulletList items={w.points} dotColor={ORANGE} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DayPlanSection() {
+  const [activeDay, setActiveDay] = useState(0);
+  const day = DAYS[activeDay];
+
+  return (
+    <div style={{ background: "transparent" }}>
+      <div className="app-section" style={styles.section}>
+        <div style={styles.sectionLabel}>EXECUTION PLAN</div>
+        <div className="section-title" style={styles.sectionTitle}>First 30 . 60 . 90 Days</div>
+
+        <div className="day-nav" style={styles.dayNav}>
+          {DAYS.map((d, i) => (
+            <button
+              key={d.num}
+              style={styles.dayNavBtn(i === activeDay)}
+              onClick={() => setActiveDay(i)}
+              type="button"
+            >
+              <span style={styles.dayNumBadge(i === activeDay)}>{d.num}</span>
+              <span>Day</span>
+            </button>
+          ))}
+        </div>
+
+        <div className="day-card" style={styles.dayCard}>
+          <div className="day-header" style={styles.dayHeader}>
+            <div>
+              <div style={styles.dayLabel}>Day Plan</div>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 4 }}>
+                <span style={styles.dayBigNum}>{day.num}</span>
+              </div>
+            </div>
+            <div style={{ flex: 1 }}>
+              <div style={styles.dayTitle}>{day.title}</div>
+              <div style={styles.dayTagline}>{day.tagline}</div>
+            </div>
+          </div>
+
+          <div className="day-body" style={styles.dayBody}>
+            <div className="card-grid" style={styles.sectionGrid}>
+              {day.sections.map((sec) => (
+                <div className="modern-card" key={sec.heading} style={styles.sectionBox}>
+                  <div style={styles.sectionBoxHead}>{sec.heading}</div>
+                  <BulletList items={sec.items} />
+                </div>
+              ))}
+            </div>
+
+            <div style={styles.milestone}>
+              <span style={styles.milestoneIcon}>🎯</span>
+              <div>
+                <span style={styles.milestoneLabel}>Day {day.num} Milestone</span>
+                <span style={styles.milestoneText}>{day.milestone}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function PipelineSection() {
+  const [expanded, setExpanded] = useState(null);
+
+  return (
+    <div style={{ background: "linear-gradient(180deg, rgba(255,255,255,0.7), rgba(251,250,248,0.95))" }}>
+      <div className="app-section" style={styles.section}>
+        <div style={styles.sectionLabel}>GROWTH STRATEGY</div>
+        <div className="section-title" style={styles.sectionTitle}>Pipeline Growth Plan</div>
+        <div className="card-grid" style={styles.pipelineGrid}>
+          {PIPELINE.map((p) => (
+            <div
+              className="modern-card pipeline-card"
+              key={p.id}
+              style={{
+                ...styles.pipelineCard(p.color),
+                transform: expanded === p.id ? "translateY(-4px)" : "translateY(0)",
+                boxShadow:
+                  expanded === p.id
+                    ? `0 24px 60px ${p.color}22`
+                    : "0 18px 48px rgba(26, 23, 20, 0.06)",
+              }}
+              onClick={() => setExpanded(expanded === p.id ? null : p.id)}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  setExpanded(expanded === p.id ? null : p.id);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+            >
+              <div style={styles.pipelineHeader(p.color)}>
+                <div style={styles.pipelineIconBg(p.color)}>{p.icon}</div>
+                <div>
+                  <div style={styles.pipelineTitle}>{p.title}</div>
+                  <div style={styles.pipelineSub}>{p.subtitle}</div>
+                </div>
+                <span
+                  style={{
+                    marginLeft: "auto",
+                    fontSize: 20,
+                    color: p.color,
+                    transform: expanded === p.id ? "rotate(180deg)" : "rotate(0deg)",
+                    transition: "transform 0.2s",
+                    flexShrink: 0,
+                  }}
+                >
+                  ↓
+                </span>
+              </div>
+
+              <div style={styles.pipelineBody}>
+                {expanded === p.id ? (
+                  <BulletList items={p.points} dotColor={p.color} />
+                ) : (
+                  <div style={{ fontSize: 13, color: "#7C7168", fontWeight: 700 }}>
+                    Click to expand strategy
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function App() {
+  const [activeSection, setActiveSection] = useState("overview");
+  const currentDate = new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date());
+
+  const scrollTo = (id) => {
+    setActiveSection(id);
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  return (
+    <div style={styles.app}>
+      <header className="site-header" style={styles.header}>
+        <div className="site-logo">
+          <CursorLogo size={28} />
+        </div>
+        <nav className="site-nav" style={styles.nav}>
+          {NAV_ITEMS.map((item) => (
+            <button
+              className="nav-button"
+              key={item.id}
+              style={styles.navBtn(activeSection === item.id)}
+              onClick={() => scrollTo(item.id)}
+              type="button"
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+        <div className="header-context" style={styles.headerRight}>
+          <span>Operating Plan . Life Sciences & Biotech</span>
+        </div>
+      </header>
+
+      <section className="hero-section" id="overview" style={styles.hero}>
+        <div
+          style={{
+            position: "absolute",
+            right: -80,
+            top: -80,
+            width: 400,
+            height: 400,
+            borderRadius: "50%",
+            background: "rgba(255, 255, 255, 0.08)",
+            opacity: 1,
+          }}
+        />
+        <div
+          style={{
+            position: "absolute",
+            right: 60,
+            bottom: -60,
+            width: 250,
+            height: 250,
+            borderRadius: "50%",
+            background: ORANGE,
+            opacity: 0.08,
+          }}
+        />
+
+        <div className="hero-inner" style={styles.heroInner}>
+          <div className="hero-copy" style={styles.heroCopy}>
+            <div className="hero-heading-row" style={styles.heroTitleLockup}>
+              <h1 className="hero-title" style={styles.heroTitle}>
+                Building enterprise growth <span style={{ color: "#FF9A70" }}>in life sciences & biotech</span>
+              </h1>
+              <div className="headshot-card" style={styles.headshotCard}>
+                <img src={HEADSHOT_URL} alt="David Gutshall headshot" style={styles.headshotImage} />
+              </div>
+            </div>
+            <p className="hero-subtitle" style={styles.heroSub}>
+              A sharper operating plan for identifying signal, developing champions, and turning
+              Cursor's product-led adoption into durable enterprise contracts across life sciences & biotech.
+            </p>
+            <div className="hero-badges" style={styles.heroBadges}>
+              <div style={styles.heroBadge}>
+                <span style={styles.heroBadgeLabel}>Prepared For</span>
+                Phil Tonachio - GVP, Life Sciences and Biotech
+              </div>
+              <div style={styles.heroBadge}>
+                <span style={styles.heroBadgeLabel}>Presenter</span>
+                David Gutshall, Strategic Account Executive
+              </div>
+              <div style={styles.heroBadge}>
+                <span style={styles.heroBadgeLabel}>Date</span>
+                {currentDate}
+              </div>
+              <div style={styles.heroBadge}>
+                <span style={styles.heroBadgeLabel}>Focus</span>
+                Large Enterprise Life Sciences & Biotech
+              </div>
+            </div>
+          </div>
+
+          <aside className="hero-panel" style={styles.heroPanel}>
+            <div style={styles.heroPanelLabel}>Execution Focus</div>
+            <div style={styles.heroPanelTitle}>Signal to champions to enterprise contracts.</div>
+            <BulletList
+              items={[
+                "Map active Cursor usage and engineering stakeholders inside named life sciences & biotech accounts",
+                "Turn practitioner wins into structured pilots with measurable productivity outcomes",
+                "Build focused pipeline through outbound, PLG signal, customers, events, and partners",
+              ]}
+              dotColor={ORANGE}
+            />
+            <div className="hero-metrics" style={styles.heroMetricGrid}>
+              <div style={styles.heroMetric}>
+                <div style={styles.heroMetricValue}>90</div>
+                <div style={styles.heroMetricLabel}>day operating cadence</div>
+              </div>
+              <div style={styles.heroMetric}>
+                <div style={styles.heroMetricValue}>4x</div>
+                <div style={styles.heroMetricLabel}>pipeline coverage target</div>
+              </div>
+              <div style={styles.heroMetric}>
+                <div style={styles.heroMetricValue}>5</div>
+                <div style={styles.heroMetricLabel}>pipeline creation motions</div>
+              </div>
+              <div style={styles.heroMetric}>
+                <div style={styles.heroMetricValue}>50%+</div>
+                <div style={styles.heroMetricLabel}>Stage 2+ pipeline mix</div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div id="market">
+        <MarketSection />
+      </div>
+
+      <div id="why-cursor">
+        <WhyCursorSection />
+      </div>
+
+      <div id="90-day">
+        <DayPlanSection />
+      </div>
+
+      <div id="pipeline">
+        <PipelineSection />
+      </div>
+
+      <footer className="site-footer" style={styles.footer}>
+        <CursorLogo size={22} />
+        <div style={{ ...styles.footerText, textAlign: "center" }}>
+          Enterprise Sales Operating Plan . Life Sciences & Biotech . {currentDate}
+        </div>
+        <div style={styles.footerText}>Confidential . David Gutshall</div>
+      </footer>
+    </div>
+  );
+}
